@@ -3,21 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>MediVault - Family Electronic Health Card</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f7f9;
+            color: #222;
+        }
+
+        header {
+            background: #0b7285;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .card h3 {
+            color: #0b7285;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #555;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #0b7285;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background: #e9ecef;
+            color: #555;
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>Welcome to MediVault</h1>
+    <header>
+        <h1>💙 MediVault</h1>
+        <p>Your Personal Family Electronic Health Card System</p>
+    </header>
 
-    <p>Your Personal Family Electronic Health Card System</p>
+    <div class="container">
 
-    <h2>Family Members</h2>
+        <h2 class="section-title">Family Members</h2>
 
-    <ul>
-        <li>Family Member 1</li>
-        <li>Family Member 2</li>
-        <li>Family Member 3</li>
-    </ul>
+        <div class="members">
+
+            <div class="card">
+                <h3>Family Member 1</h3>
+                <p>Electronic Health Card</p>
+                <a href="#" class="button">View Health Card</a>
+            </div>
+
+            <div class="card">
+                <h3>Family Member 2</h3>
+                <p>Electronic Health Card</p>
+                <a href="#" class="button">View Health Card</a>
+            </div>
+
+            <div class="card">
+                <h3>Family Member 3</h3>
+                <p>Electronic Health Card</p>
+                <a href="#" class="button">View Health Card</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        © 2026 MediVault | Family Electronic Health Card System
+    </footer>
 
 </body>
-</html>
+    </html>
