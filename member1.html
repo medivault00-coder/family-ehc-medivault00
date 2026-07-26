@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MD HAFIJUL ISLAM JIHAD - MediVault</title>
+    <title>MediVault - Family Electronic Health Card</title>
 
     <style>
         body {
@@ -18,51 +18,65 @@
             background: #0b7285;
             color: white;
             text-align: center;
-            padding: 25px 15px;
+            padding: 30px 15px;
         }
 
         header h1 {
             margin: 0;
+            font-size: 32px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 16px;
         }
 
         .container {
-            max-width: 700px;
+            max-width: 900px;
             margin: 30px auto;
             padding: 20px;
         }
 
-        .health-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .health-card h2 {
-            color: #0b7285;
+        .section-title {
             text-align: center;
             margin-bottom: 25px;
         }
 
-        .info {
-            padding: 12px 0;
-            border-bottom: 1px solid #ddd;
+        .members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
 
-        .label {
-            font-weight: bold;
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .card h3 {
             color: #0b7285;
+            margin-bottom: 15px;
         }
 
-        .back-button {
-            display: block;
-            width: fit-content;
-            margin: 25px auto 0;
+        .card p {
+            color: #555;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 15px;
             padding: 10px 20px;
             background: #0b7285;
             color: white;
             text-decoration: none;
             border-radius: 6px;
+        }
+
+        .button:hover {
+            background: #095c6b;
         }
 
         footer {
@@ -79,51 +93,44 @@
 
     <header>
         <h1>💙 MediVault</h1>
-        <p>Electronic Health Card</p>
+        <p>Your Personal Family Electronic Health Card System</p>
     </header>
 
     <div class="container">
 
-        <div class="health-card">
+        <h2 class="section-title">Family Members</h2>
 
-            <h2>MD HAFIJUL ISLAM JIHAD</h2>
+        <div class="members">
 
-            <div class="info">
-                <span class="label">Full Name:</span>
-                MD HAFIJUL ISLAM JIHAD
+            <!-- MD HAFIJUL ISLAM JIHAD -->
+            <div class="card">
+                <h3>MD HAFIJUL ISLAM JIHAD</h3>
+                <p>Electronic Health Card</p>
+
+                <a href="member1.html" class="button">
+                    View Health Card
+                </a>
             </div>
 
-            <div class="info">
-                <span class="label">Blood Group:</span>
-                Not Added
+            <!-- Family Member 2 -->
+            <div class="card">
+                <h3>Family Member 2</h3>
+                <p>Electronic Health Card</p>
+
+                <a href="#" class="button">
+                    Coming Soon
+                </a>
             </div>
 
-            <div class="info">
-                <span class="label">Date of Birth:</span>
-                Not Added
-            </div>
+            <!-- Family Member 3 -->
+            <div class="card">
+                <h3>Family Member 3</h3>
+                <p>Electronic Health Card</p>
 
-            <div class="info">
-                <span class="label">Emergency Contact:</span>
-                Not Added
+                <a href="#" class="button">
+                    Coming Soon
+                </a>
             </div>
-
-            <div class="info">
-                <span class="label">Medical History:</span>
-                Not Added
-            </div>
-
-            <div class="info">
-                <span class="label">Current Medication:</span>
-                Not Added
-            </div>
-
-            <div class="info">
-                <span class="label">Emergency Information:</span>
-                Not Added
-            </div>
-
-            <a href="index.html" class="back-button">← Back to MediVault</a>
 
         </div>
 
@@ -134,4 +141,4 @@
     </footer>
 
 </body>
-  </html>
+</html>
