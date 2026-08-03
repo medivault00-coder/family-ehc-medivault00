@@ -1,273 +1,912 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MD HAFIJUL ISLAM JIHAD | MediVault</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MediVault | Electronic Health Card</title>
+
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
+
         body {
+
             margin: 0;
+
             font-family: Arial, sans-serif;
+
             background: #f4f7f9;
+
             color: #222;
+
         }
 
-        /* Header */
+
         header {
+
             background: #0b7285;
+
             color: white;
+
             text-align: center;
-            padding: 30px 15px;
+
+            padding: 25px 15px;
+
         }
+
 
         header h1 {
+
             margin: 0;
-            font-size: 32px;
+
+            font-size: 30px;
+
         }
+
 
         header p {
-            margin: 10px 0 0;
-            font-size: 16px;
+
+            margin: 8px 0 0;
+
         }
 
-        /* Main Container */
+
         .container {
+
             max-width: 750px;
+
             margin: 30px auto;
+
             padding: 15px;
+
         }
 
-        /* Health Card */
+
         .health-card {
+
             background: white;
+
             padding: 30px;
+
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.1);
+
         }
+
 
         .health-card h2 {
+
             text-align: center;
+
             color: #0b7285;
+
             margin-top: 0;
-            margin-bottom: 10px;
+
         }
+
 
         .card-subtitle {
+
             text-align: center;
+
             color: #666;
+
             margin-bottom: 30px;
+
         }
 
-        /* Section Title */
+
         .section-title {
+
             color: #0b7285;
-            border-bottom: 2px solid #0b7285;
+
+            border-bottom:
+                2px solid #0b7285;
+
             padding-bottom: 8px;
+
             margin-top: 30px;
+
         }
 
-        /* Information */
+
         .info {
+
             padding: 14px 0;
-            border-bottom: 1px solid #ddd;
+
+            border-bottom:
+                1px solid #ddd;
+
             line-height: 1.6;
+
         }
+
 
         .label {
+
             font-weight: bold;
+
             color: #0b7285;
+
         }
 
-        /* Emergency Section */
+
         .emergency {
+
             margin-top: 25px;
+
             padding: 20px;
+
             background: #fff3f3;
+
             border-radius: 10px;
-            border-left: 5px solid #d00000;
+
+            border-left:
+                5px solid #d00000;
+
         }
+
 
         .emergency h3 {
+
             color: #d00000;
+
             margin-top: 0;
+
         }
 
-        /* Back Button */
-        .back-button {
-            display: block;
-            width: fit-content;
-            margin: 30px auto 0;
-            padding: 12px 24px;
-            background: #0b7285;
-            color: white;
-            text-decoration: none;
-            border-radius: 7px;
-            font-weight: bold;
-        }
 
-        .back-button:hover {
-            background: #095c6b;
-        }
+        .button-container {
 
-        /* Footer */
-        footer {
             text-align: center;
-            padding: 20px;
+
             margin-top: 30px;
-            background: #e9ecef;
-            color: #555;
+
         }
 
-        /* Mobile Responsive */
+
+        .logout-button {
+
+            padding: 12px 25px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #d00000;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        .logout-button:hover {
+
+            background: #a80000;
+
+        }
+
+
+        .loading {
+
+            text-align: center;
+
+            padding: 40px;
+
+            font-size: 18px;
+
+            color: #0b7285;
+
+        }
+
+
+        .error {
+
+            text-align: center;
+
+            padding: 40px;
+
+            color: #d00000;
+
+        }
+
+
+        footer {
+
+            text-align: center;
+
+            padding: 20px;
+
+            margin-top: 30px;
+
+            background: #e9ecef;
+
+            color: #555;
+
+        }
+
+
         @media (max-width: 600px) {
 
-            header h1 {
-                font-size: 25px;
-            }
-
             .health-card {
+
                 padding: 20px;
+
             }
 
-            .container {
-                margin: 15px auto;
+            header h1 {
+
+                font-size: 25px;
+
             }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1>💙 MediVault</h1>
-        <p>Electronic Health Card</p>
-    </header>
+
+<header>
+
+    <h1>💙 MediVault</h1>
+
+    <p>Electronic Health Card</p>
+
+</header>
 
 
-    <!-- Main Content -->
-    <div class="container">
-
-        <div class="health-card">
-
-            <!-- Person Name -->
-            <h2>MD HAFIJUL ISLAM JIHAD</h2>
-
-            <p class="card-subtitle">
-                Personal Electronic Health Card
-            </p>
+<div class="container">
 
 
-            <!-- PERSONAL INFORMATION -->
+    <div id="loading" class="loading">
 
-            <h3 class="section-title">
-                👤 Personal Information
-            </h3>
-
-            <div class="info">
-                <span class="label">Full Name:</span><br>
-                MD HAFIJUL ISLAM JIHAD
-            </div>
-
-            <div class="info">
-                <span class="label">Date of Birth:</span><br>
-                Not Added
-            </div>
-
-            <div class="info">
-                <span class="label">Blood Group:</span><br>
-                Not Added
-            </div>
-
-            <div class="info">
-                <span class="label">Personal Contact Number:</span><br>
-                Not Added
-            </div>
-
-            <div class="info">
-                <span class="label">Address:</span><br>
-                Not Added
-            </div>
-
-
-            <!-- MEDICAL INFORMATION -->
-
-            <h3 class="section-title">
-                🏥 Medical Information
-            </h3>
-
-            <div class="info">
-                <span class="label">Medical History:</span><br>
-                Not Added
-            </div>
-
-            <div class="info">
-                <span class="label">Current Medication:</span><br>
-                Not Added
-            </div>
-
-            <div class="info">
-                <span class="label">Allergies:</span><br>
-                Not Added
-            </div>
-
-
-            <!-- EMERGENCY INFORMATION -->
-
-            <h3 class="section-title">
-                🚨 Emergency Information
-            </h3>
-
-            <div class="emergency">
-
-                <h3>Guardian Information</h3>
-
-                <div class="info">
-                    <span class="label">Guardian's Name:</span><br>
-                    Not Added
-                </div>
-
-                <div class="info">
-                    <span class="label">
-                        Guardian's Emergency Contact Number:
-                    </span><br>
-                    Not Added
-                </div>
-
-                <div class="info">
-                    <span class="label">
-                        Important Medical Information:
-                    </span><br>
-                    Not Added
-                </div>
-
-            </div>
-
-
-            <!-- BACK TO MAIN PAGE -->
-
-            <a
-                href="https://medivault00-coder.github.io/family-ehc-medivault00/"
-                class="back-button">
-                ← Back to MediVault
-            </a>
-
-        </div>
+        Loading your Electronic Health Card...
 
     </div>
 
 
-    <!-- Footer -->
+    <div
+        id="error"
+        class="error"
+        style="display:none;"
+    >
 
-    <footer>
-        © 2026 MediVault | Family Electronic Health Card System
-    </footer>
+        Unable to load your Health Card.
+
+    </div>
+
+
+    <div
+        id="healthCard"
+        class="health-card"
+        style="display:none;"
+    >
+
+
+        <h2 id="fullName"></h2>
+
+
+        <p class="card-subtitle">
+
+            Personal Electronic Health Card
+
+        </p>
+
+
+        <!-- PERSONAL INFORMATION -->
+
+        <h3 class="section-title">
+
+            👤 Personal Information
+
+        </h3>
+
+
+        <div class="info">
+
+            <span class="label">
+                Patient ID:
+            </span>
+            <br>
+
+            <span id="patientId">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Full Name:
+            </span>
+            <br>
+
+            <span id="name">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Date of Birth:
+            </span>
+            <br>
+
+            <span id="dateOfBirth">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Gender:
+            </span>
+            <br>
+
+            <span id="gender">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Blood Group:
+            </span>
+            <br>
+
+            <span id="bloodGroup">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Personal Contact Number:
+            </span>
+            <br>
+
+            <span id="phone">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Address:
+            </span>
+            <br>
+
+            <span id="address">
+                —
+            </span>
+
+        </div>
+
+
+        <!-- MEDICAL INFORMATION -->
+
+        <h3 class="section-title">
+
+            🏥 Medical Information
+
+        </h3>
+
+
+        <div class="info">
+
+            <span class="label">
+                Medical History:
+            </span>
+            <br>
+
+            <span id="medicalHistory">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Current Medications:
+            </span>
+            <br>
+
+            <span id="currentMedications">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Allergies:
+            </span>
+            <br>
+
+            <span id="allergies">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Surgical History:
+            </span>
+            <br>
+
+            <span id="surgicalHistory">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Chronic Conditions:
+            </span>
+            <br>
+
+            <span id="chronicConditions">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Disabilities:
+            </span>
+            <br>
+
+            <span id="disabilities">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Family Medical History:
+            </span>
+            <br>
+
+            <span id="familyMedicalHistory">
+                —
+            </span>
+
+        </div>
+
+
+        <!-- EMERGENCY INFORMATION -->
+
+        <h3 class="section-title">
+
+            🚨 Emergency Information
+
+        </h3>
+
+
+        <div class="emergency">
+
+
+            <h3>
+                Emergency Contact
+            </h3>
+
+
+            <div class="info">
+
+                <span class="label">
+                    Emergency Contact:
+                </span>
+                <br>
+
+                <span id="emergencyContact">
+                    —
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <span class="label">
+                    Important Medical Information:
+                </span>
+                <br>
+
+                <span id="notes">
+                    —
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- DOCTOR INFORMATION -->
+
+        <h3 class="section-title">
+
+            👨‍⚕️ Doctor Information
+
+        </h3>
+
+
+        <div class="info">
+
+            <span class="label">
+                Doctor Name:
+            </span>
+            <br>
+
+            <span id="doctorName">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Doctor Contact:
+            </span>
+            <br>
+
+            <span id="doctorContact">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="button-container">
+
+            <button
+                id="logoutButton"
+                class="logout-button"
+            >
+
+                🔒 Logout
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<footer>
+
+    © 2026 MediVault |
+    Family Electronic Health Card System
+
+</footer>
+
+
+<!-- Supabase Library -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+
+const SUPABASE_URL =
+    "https://wzstqwuxinbiyommbljl.supabase.co";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_4pyUeXGZuNoSrNgvdMqeeg_lfeq_VoS";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+
+        SUPABASE_URL,
+
+        SUPABASE_KEY
+
+    );
+
+
+
+async function loadHealthCard() {
+
+
+    // Check Login Session
+
+    const {
+        data: {
+            session
+        }
+    } = await supabaseClient
+        .auth
+        .getSession();
+
+
+    // No Login
+
+    if (!session) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    // Get Current User ID
+
+    const userId =
+        session.user.id;
+
+
+    // Get Patient Data
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+
+        .from("patients")
+
+        .select("*")
+
+        .eq(
+            "user_id",
+            userId
+        )
+
+        .single();
+
+
+    if (error) {
+
+        console.error(error);
+
+        document
+            .getElementById("loading")
+            .style.display = "none";
+
+        document
+            .getElementById("error")
+            .style.display = "block";
+
+        return;
+
+    }
+
+
+    // Hide Loading
+
+    document
+        .getElementById("loading")
+        .style.display = "none";
+
+
+    // Show Health Card
+
+    document
+        .getElementById("healthCard")
+        .style.display = "block";
+
+
+    // Fill Data
+
+
+    document
+        .getElementById("fullName")
+        .textContent =
+            data.full_name || "Not Added";
+
+
+    document
+        .getElementById("patientId")
+        .textContent =
+            data.patient_id || "Not Added";
+
+
+    document
+        .getElementById("name")
+        .textContent =
+            data.full_name || "Not Added";
+
+
+    document
+        .getElementById("dateOfBirth")
+        .textContent =
+            data.date_of_birth || "Not Added";
+
+
+    document
+        .getElementById("gender")
+        .textContent =
+            data.gender || "Not Added";
+
+
+    document
+        .getElementById("bloodGroup")
+        .textContent =
+            data.blood_group || "Not Added";
+
+
+    document
+        .getElementById("phone")
+        .textContent =
+            data.phone || "Not Added";
+
+
+    document
+        .getElementById("address")
+        .textContent =
+            data.address || "Not Added";
+
+
+    document
+        .getElementById("medicalHistory")
+        .textContent =
+            data.medical_history || "Not Added";
+
+
+    document
+        .getElementById("currentMedications")
+        .textContent =
+            data.current_medications || "Not Added";
+
+
+    document
+        .getElementById("allergies")
+        .textContent =
+            data.allergies || "Not Added";
+
+
+    document
+        .getElementById("surgicalHistory")
+        .textContent =
+            data.surgical_history || "Not Added";
+
+
+    document
+        .getElementById("chronicConditions")
+        .textContent =
+            data.chronic_conditions || "Not Added";
+
+
+    document
+        .getElementById("disabilities")
+        .textContent =
+            data.disabilities || "Not Added";
+
+
+    document
+        .getElementById("familyMedicalHistory")
+        .textContent =
+            data.family_medical_history || "Not Added";
+
+
+    document
+        .getElementById("emergencyContact")
+        .textContent =
+            data.emergency_contact || "Not Added";
+
+
+    document
+        .getElementById("notes")
+        .textContent =
+            data.note || "Not Added";
+
+
+    document
+        .getElementById("doctorName")
+        .textContent =
+            data.doctor_name || "Not Added";
+
+
+    document
+        .getElementById("doctorContact")
+        .textContent =
+            data.doctor_contact || "Not Added";
+
+
+}
+
+
+
+// Logout
+
+document
+    .getElementById("logoutButton")
+    .addEventListener(
+
+        "click",
+
+        async function() {
+
+
+            await supabaseClient
+                .auth
+                .signOut();
+
+
+            window.location.href =
+                "login.html";
+
+
+        }
+
+    );
+
+
+
+// Load EHC
+
+loadHealthCard();
+
+
+</script>
+
 
 </body>
-                    </html>
+
+    </html>
