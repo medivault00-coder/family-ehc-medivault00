@@ -723,19 +723,31 @@ async function loadHealthCard() {
 
     if (error) {
 
-        console.error(error);
+    console.error("EHC Load Error:", error);
 
-        document
-            .getElementById("loading")
-            .style.display = "none";
+    document
+        .getElementById("loading")
+        .style.display = "none";
 
-        document
-            .getElementById("error")
-            .style.display = "block";
+    const errorBox =
+        document.getElementById("error");
 
-        return;
+    errorBox.style.display = "block";
 
-    }
+    errorBox.innerHTML =
+        "Unable to load your Health Card.<br><br>" +
+        "<small>" +
+        "Error: " +
+        error.message +
+        "<br>" +
+        "Code: " +
+        (error.code || "N/A") +
+        "</small>";
+
+    return;
+
+}
+    
 
 
     // Hide Loading
