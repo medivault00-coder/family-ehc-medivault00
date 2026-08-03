@@ -88,6 +88,11 @@
             background: #095c6b;
         }
 
+        .login-button:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
         .back-link {
             display: block;
             text-align: center;
@@ -106,6 +111,27 @@
             color: #555;
         }
 
+        .message {
+            display: none;
+            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 7px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .error {
+            display: block;
+            background: #fff3f3;
+            color: #c00000;
+        }
+
+        .success {
+            display: block;
+            background: #f0fff4;
+            color: #087f23;
+        }
+
         footer {
             text-align: center;
             margin-top: 20px;
@@ -117,74 +143,228 @@
 
 <body>
 
-    <div class="login-container">
+<div class="login-container">
 
-        <div class="login-card">
+    <div class="login-card">
 
-            <div class="logo">
-                💙 MediVault
-            </div>
-
-            <p class="subtitle">
-                Secure Electronic Health Card System
-            </p>
-
-            <form>
-
-                <div class="form-group">
-                    <label for="name">
-    Name
-</label>
-
-<input
-    type="text"
-    id="name"
-    placeholder="Enter your name"
-    required>
-
-
-                <div class="form-group">
-                    <label for="password">
-                        Password
-                    </label>
-
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        required>
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="login-button">
-                    Login
-                </button>
-
-            </form>
-
-
-            <div class="security-note">
-                🔐 Your personal health information should be protected
-                with secure authentication.
-            </div>
-
-
-            <a
-                href="https://medivault00-coder.github.io/family-ehc-medivault00/"
-                class="back-link">
-                ← Back to MediVault
-            </a>
-
+        <div class="logo">
+            💙 MediVault
         </div>
 
+        <p class="subtitle">
+            Secure Electronic Health Card System
+        </p>
 
-        <footer>
-            © 2026 MediVault
-        </footer>
+        <div id="message" class="message"></div>
+
+        <form id="loginForm">
+
+            <div class="form-group">
+
+                <label for="patientId">
+                    Patient ID
+                </label>
+
+                <input
+                    type="text"
+                    id="patientId"
+                    placeholder="Example: MV-1001"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required>
+
+            </div>
+
+            <button
+                type="submit"
+                class="login-button"
+                id="loginButton">
+
+                Login
+
+            </button>
+
+        </form>
+
+        <div class="security-note">
+            🔐 Your health information is protected with secure authentication.
+        </div>
+
+        <a
+            href="https://medivault00-coder.github.io/family-ehc-medivault00/"
+            class="back-link">
+
+            ← Back to MediVault
+
+        </a>
 
     </div>
 
+    <footer>
+        © 2026 MediVault
+    </footer>
+
+</div>
+
+
+<!-- Supabase JavaScript Library -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+    // Supabase Configuration
+
+    const SUPABASE_URL =
+        "https://wzstqwuxinbiyommbljl.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_4pyUeXGZuNoSrNgvdMqeeg_lfeq_VoS";
+
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+    // Login Form
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const patientIdInput =
+        document.getElementById("patientId");
+
+    const passwordInput =
+        document.getElementById("password");
+
+    const loginButton =
+        document.getElementById("loginButton");
+
+    const message =
+        document.getElementById("message");
+
+
+    loginForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+            const patientId =
+                patientIdInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+
+            message.className = "message";
+            message.textContent = "";
+
+            loginButton.disabled = true;
+            loginButton.textContent = "Logging in...";
+
+
+            try {
+
+                // Get Auth Email from Patient ID
+
+                const { data: authEmail, error: emailError } =
+                    await supabaseClient.rpc(
+                        "get_auth_email_by_patient_id",
+                        {
+                            p_patient_id: patientId
+                        }
+                    );
+
+
+                if (emailError) {
+                    throw emailError;
+                }
+
+
+                if (!authEmail) {
+
+                    throw new Error(
+                        "Patient ID not found."
+                    );
+
+                }
+
+
+                // Login with Supabase Auth
+
+                const { data, error } =
+                    await supabaseClient.auth.signInWithPassword({
+
+                        email: authEmail,
+
+                        password: password
+
+                    });
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                // Login successful
+
+                message.className =
+                    "message success";
+
+                message.textContent =
+                    "Login successful. Opening your EHC...";
+
+
+                // Open EHC
+
+                setTimeout(function() {
+
+                    window.location.href =
+                        "member1.html";
+
+                }, 800);
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.className =
+                    "message error";
+
+                message.textContent =
+                    "Login failed. Please check your Patient ID and Password.";
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "Login";
+
+            }
+
+        }
+
+    );
+
+</script>
+
 </body>
-</html>
+    </html>
