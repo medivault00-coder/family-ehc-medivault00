@@ -1,654 +1,918 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>MediVault | Electronic Health Card</title>
+<title>MediVault | Electronic Health Card</title>
 
 
-    <style>
+<style>
 
-        * {
-            box-sizing: border-box;
-        }
-
-
-        body {
-
-            margin: 0;
-
-            font-family: Arial, sans-serif;
-
-            background: #f4f7f9;
-
-            color: #222;
-
-        }
+    * {
+        box-sizing: border-box;
+    }
 
 
-        header {
+    body {
 
-            background: #0b7285;
+        margin: 0;
 
-            color: white;
+        font-family: Arial, sans-serif;
 
-            text-align: center;
+        background: #f4f7f9;
 
-            padding: 25px 15px;
+        color: #222;
 
-        }
-
-
-        header h1 {
-
-            margin: 0;
-
-            font-size: 30px;
-
-        }
+    }
 
 
-        header p {
+    header {
 
-            margin: 8px 0 0;
+        background: #0b7285;
 
-        }
+        color: white;
+
+        text-align: center;
+
+        padding: 25px 15px;
+
+    }
 
 
-        .container {
+    header h1 {
 
-            max-width: 750px;
+        margin: 0;
 
-            margin: 30px auto;
+        font-size: 30px;
 
-            padding: 15px;
+    }
 
-        }
 
+    header p {
+
+        margin: 8px 0 0;
+
+    }
+
+
+    .container {
+
+        max-width: 750px;
+
+        margin: 30px auto;
+
+        padding: 15px;
+
+    }
+
+
+    .health-card {
+
+        background: white;
+
+        padding: 30px;
+
+        border-radius: 15px;
+
+        box-shadow:
+            0 4px 15px
+            rgba(0, 0, 0, 0.1);
+
+    }
+
+
+    .health-card h2 {
+
+        text-align: center;
+
+        color: #0b7285;
+
+        margin-top: 0;
+
+    }
+
+
+    .card-subtitle {
+
+        text-align: center;
+
+        color: #666;
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .section-title {
+
+        color: #0b7285;
+
+        border-bottom:
+            2px solid #0b7285;
+
+        padding-bottom: 8px;
+
+        margin-top: 30px;
+
+    }
+
+
+    .info {
+
+        padding: 14px 0;
+
+        border-bottom:
+            1px solid #ddd;
+
+        line-height: 1.6;
+
+    }
+
+
+    .label {
+
+        font-weight: bold;
+
+        color: #0b7285;
+
+    }
+
+
+    .emergency {
+
+        margin-top: 25px;
+
+        padding: 20px;
+
+        background: #fff3f3;
+
+        border-radius: 10px;
+
+        border-left:
+            5px solid #d00000;
+
+    }
+
+
+    .emergency h3 {
+
+        color: #d00000;
+
+        margin-top: 0;
+
+    }
+
+
+    .button-container {
+
+        text-align: center;
+
+        margin-top: 30px;
+
+    }
+
+
+    .logout-button {
+
+        padding: 12px 25px;
+
+        border: none;
+
+        border-radius: 7px;
+
+        background: #d00000;
+
+        color: white;
+
+        font-size: 15px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+    }
+
+
+    .logout-button:hover {
+
+        background: #a80000;
+
+    }
+
+
+    /* QR CHANGE REQUEST */
+
+    .qr-request-section {
+
+        margin-top: 35px;
+
+        padding: 20px;
+
+        background: #f1f8fa;
+
+        border-radius: 10px;
+
+        border-left:
+            5px solid #0b7285;
+
+    }
+
+
+    .qr-request-section h3 {
+
+        color: #0b7285;
+
+        margin-top: 0;
+
+    }
+
+
+    .qr-request-button {
+
+        width: 100%;
+
+        padding: 13px;
+
+        border: none;
+
+        border-radius: 7px;
+
+        background: #0b7285;
+
+        color: white;
+
+        font-size: 15px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        margin-top: 10px;
+
+    }
+
+
+    .qr-request-button:hover {
+
+        background: #095c6b;
+
+    }
+
+
+    .qr-form {
+
+        display: none;
+
+        margin-top: 20px;
+
+    }
+
+
+    .qr-form label {
+
+        display: block;
+
+        margin-top: 15px;
+
+        margin-bottom: 7px;
+
+        font-weight: bold;
+
+        color: #333;
+
+    }
+
+
+    .qr-form select,
+
+    .qr-form textarea {
+
+        width: 100%;
+
+        padding: 12px;
+
+        border: 1px solid #ccc;
+
+        border-radius: 7px;
+
+        font-size: 15px;
+
+        font-family: Arial, sans-serif;
+
+    }
+
+
+    .qr-form textarea {
+
+        min-height: 100px;
+
+        resize: vertical;
+
+    }
+
+
+    .submit-request-button {
+
+        width: 100%;
+
+        padding: 13px;
+
+        margin-top: 20px;
+
+        border: none;
+
+        border-radius: 7px;
+
+        background: #198754;
+
+        color: white;
+
+        font-size: 15px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+    }
+
+
+    .submit-request-button:hover {
+
+        background: #146c43;
+
+    }
+
+
+    .request-message {
+
+        display: none;
+
+        margin-top: 15px;
+
+        padding: 12px;
+
+        border-radius: 7px;
+
+        text-align: center;
+
+        font-size: 14px;
+
+    }
+
+
+    .request-success {
+
+        display: block;
+
+        background: #e8f7ee;
+
+        color: #146c43;
+
+    }
+
+
+    .request-error {
+
+        display: block;
+
+        background: #fff3f3;
+
+        color: #c00000;
+
+    }
+
+
+    .loading {
+
+        text-align: center;
+
+        padding: 40px;
+
+        font-size: 18px;
+
+        color: #0b7285;
+
+    }
+
+
+    .error {
+
+        text-align: center;
+
+        padding: 40px;
+
+        color: #d00000;
+
+    }
+
+
+    footer {
+
+        text-align: center;
+
+        padding: 20px;
+
+        margin-top: 30px;
+
+        background: #e9ecef;
+
+        color: #555;
+
+    }
+
+
+    @media (max-width: 600px) {
 
         .health-card {
 
-            background: white;
-
-            padding: 30px;
-
-            border-radius: 15px;
-
-            box-shadow:
-                0 4px 15px
-                rgba(0, 0, 0, 0.1);
-
-        }
-
-
-        .health-card h2 {
-
-            text-align: center;
-
-            color: #0b7285;
-
-            margin-top: 0;
-
-        }
-
-
-        .card-subtitle {
-
-            text-align: center;
-
-            color: #666;
-
-            margin-bottom: 30px;
-
-        }
-
-
-        .section-title {
-
-            color: #0b7285;
-
-            border-bottom:
-                2px solid #0b7285;
-
-            padding-bottom: 8px;
-
-            margin-top: 30px;
-
-        }
-
-
-        .info {
-
-            padding: 14px 0;
-
-            border-bottom:
-                1px solid #ddd;
-
-            line-height: 1.6;
-
-        }
-
-
-        .label {
-
-            font-weight: bold;
-
-            color: #0b7285;
-
-        }
-
-
-        .emergency {
-
-            margin-top: 25px;
-
             padding: 20px;
 
-            background: #fff3f3;
+        }
 
-            border-radius: 10px;
+        header h1 {
 
-            border-left:
-                5px solid #d00000;
+            font-size: 25px;
 
         }
 
+    }
 
-        .emergency h3 {
+</style>
 
-            color: #d00000;
+</head><body><header><h1>💙 MediVault</h1>
 
-            margin-top: 0;
+<p>Electronic Health Card</p>
 
-        }
+</header><div class="container"><div id="loading" class="loading">
 
+    Loading your Electronic Health Card...
 
-        .button-container {
+</div>
 
-            text-align: center;
 
-            margin-top: 30px;
+<div
+    id="error"
+    class="error"
+    style="display:none;"
+>
 
-        }
+    Unable to load your Health Card.
 
+</div>
 
-        .logout-button {
 
-            padding: 12px 25px;
+<div
+    id="healthCard"
+    class="health-card"
+    style="display:none;"
+>
 
-            border: none;
 
-            border-radius: 7px;
+    <h2 id="fullName"></h2>
 
-            background: #d00000;
 
-            color: white;
+    <p class="card-subtitle">
 
-            font-size: 15px;
+        Personal Electronic Health Card
 
-            font-weight: bold;
+    </p>
 
-            cursor: pointer;
 
-        }
+    <!-- PERSONAL INFORMATION -->
 
+    <h3 class="section-title">
 
-        .logout-button:hover {
+        👤 Personal Information
 
-            background: #a80000;
+    </h3>
 
-        }
 
+    <div class="info">
 
-        .loading {
+        <span class="label">
+            Patient ID:
+        </span>
+        <br>
 
-            text-align: center;
-
-            padding: 40px;
-
-            font-size: 18px;
-
-            color: #0b7285;
-
-        }
-
-
-        .error {
-
-            text-align: center;
-
-            padding: 40px;
-
-            color: #d00000;
-
-        }
-
-
-        footer {
-
-            text-align: center;
-
-            padding: 20px;
-
-            margin-top: 30px;
-
-            background: #e9ecef;
-
-            color: #555;
-
-        }
-
-
-        @media (max-width: 600px) {
-
-            .health-card {
-
-                padding: 20px;
-
-            }
-
-            header h1 {
-
-                font-size: 25px;
-
-            }
-
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-
-<header>
-
-    <h1>💙 MediVault</h1>
-
-    <p>Electronic Health Card</p>
-
-</header>
-
-
-<div class="container">
-
-
-    <div id="loading" class="loading">
-
-        Loading your Electronic Health Card...
+        <span id="patientId">
+            —
+        </span>
 
     </div>
 
 
-    <div
-        id="error"
-        class="error"
-        style="display:none;"
-    >
+    <div class="info">
 
-        Unable to load your Health Card.
+        <span class="label">
+            Full Name:
+        </span>
+        <br>
+
+        <span id="name">
+            —
+        </span>
 
     </div>
 
 
-    <div
-        id="healthCard"
-        class="health-card"
-        style="display:none;"
-    >
+    <div class="info">
+
+        <span class="label">
+            Date of Birth:
+        </span>
+        <br>
+
+        <span id="dateOfBirth">
+            —
+        </span>
+
+    </div>
 
 
-        <h2 id="fullName"></h2>
+    <div class="info">
+
+        <span class="label">
+            Gender:
+        </span>
+        <br>
+
+        <span id="gender">
+            —
+        </span>
+
+    </div>
 
 
-        <p class="card-subtitle">
+    <div class="info">
 
-            Personal Electronic Health Card
+        <span class="label">
+            Blood Group:
+        </span>
+        <br>
 
+        <span id="bloodGroup">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Personal Contact Number:
+        </span>
+        <br>
+
+        <span id="phone">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Address:
+        </span>
+        <br>
+
+        <span id="address">
+            —
+        </span>
+
+    </div>
+
+
+    <!-- MEDICAL INFORMATION -->
+
+    <h3 class="section-title">
+
+        🏥 Medical Information
+
+    </h3>
+
+
+    <div class="info">
+
+        <span class="label">
+            Medical History:
+        </span>
+        <br>
+
+        <span id="medicalHistory">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Current Medications:
+        </span>
+        <br>
+
+        <span id="currentMedications">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Allergies:
+        </span>
+        <br>
+
+        <span id="allergies">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Surgical History:
+        </span>
+        <br>
+
+        <span id="surgicalHistory">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Chronic Conditions:
+        </span>
+        <br>
+
+        <span id="chronicConditions">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Disabilities:
+        </span>
+        <br>
+
+        <span id="disabilities">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Family Medical History:
+        </span>
+        <br>
+
+        <span id="familyMedicalHistory">
+            —
+        </span>
+
+    </div>
+
+
+    <!-- EMERGENCY INFORMATION -->
+
+    <h3 class="section-title">
+
+        🚨 Emergency Information
+
+    </h3>
+
+
+    <div class="emergency">
+
+
+        <h3>
+            Emergency Contact
+        </h3>
+
+
+        <div class="info">
+
+            <span class="label">
+                Emergency Contact:
+            </span>
+            <br>
+
+            <span id="emergencyContact">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Important Medical Information:
+            </span>
+            <br>
+
+            <span id="notes">
+                —
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- DOCTOR INFORMATION -->
+
+    <h3 class="section-title">
+
+        👨‍⚕️ Doctor Information
+
+    </h3>
+
+
+    <div class="info">
+
+        <span class="label">
+            Doctor Name:
+        </span>
+        <br>
+
+        <span id="doctorName">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Doctor Contact:
+        </span>
+        <br>
+
+        <span id="doctorContact">
+            —
+        </span>
+
+    </div>
+
+
+    <!-- QR CHANGE REQUEST -->
+
+    <div class="qr-request-section">
+
+        <h3>
+            🔄 QR Code Management
+        </h3>
+
+        <p>
+            If your MediVault QR Code is lost, damaged,
+            or you believe it may be compromised,
+            you can request a new QR Code.
         </p>
 
 
-        <!-- PERSONAL INFORMATION -->
+        <button
+            type="button"
+            id="showQrRequestButton"
+            class="qr-request-button"
+        >
 
-        <h3 class="section-title">
+            🔐 Request QR Code Change
 
-            👤 Personal Information
+        </button>
 
-        </h3>
 
+        <form
+            id="qrRequestForm"
+            class="qr-form"
+        >
 
-        <div class="info">
 
-            <span class="label">
-                Patient ID:
-            </span>
-            <br>
+            <label for="qrReason">
 
-            <span id="patientId">
-                —
-            </span>
+                Reason for QR Code Change
 
-        </div>
+            </label>
 
 
-        <div class="info">
-
-            <span class="label">
-                Full Name:
-            </span>
-            <br>
-
-            <span id="name">
-                —
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Date of Birth:
-            </span>
-            <br>
-
-            <span id="dateOfBirth">
-                —
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Gender:
-            </span>
-            <br>
-
-            <span id="gender">
-                —
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Blood Group:
-            </span>
-            <br>
-
-            <span id="bloodGroup">
-                —
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Personal Contact Number:
-            </span>
-            <br>
-
-            <span id="phone">
-                —
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Address:
-            </span>
-            <br>
-
-            <span id="address">
-                —
-            </span>
-
-        </div>
-
-
-        <!-- MEDICAL INFORMATION -->
-
-        <h3 class="section-title">
-
-            🏥 Medical Information
-
-        </h3>
-
-
-        <div class="info">
-
-            <span class="label">
-                Medical History:
-            </span>
-            <br>
-
-            <span id="medicalHistory">
-                —
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Current Medications:
-            </span>
-            <br>
-
-            <span id="currentMedications">
-                —
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Allergies:
-            </span>
-            <br>
-
-            <span id="allergies">
-                —
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Surgical History:
-            </span>
-            <br>
-
-            <span id="surgicalHistory">
-                —
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Chronic Conditions:
-            </span>
-            <br>
-
-            <span id="chronicConditions">
-                —
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Disabilities:
-            </span>
-            <br>
-
-            <span id="disabilities">
-                —
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Family Medical History:
-            </span>
-            <br>
-
-            <span id="familyMedicalHistory">
-                —
-            </span>
-
-        </div>
-
-
-        <!-- EMERGENCY INFORMATION -->
-
-        <h3 class="section-title">
-
-            🚨 Emergency Information
-
-        </h3>
-
-
-        <div class="emergency">
-
-
-            <h3>
-                Emergency Contact
-            </h3>
-
-
-            <div class="info">
-
-                <span class="label">
-                    Emergency Contact:
-                </span>
-                <br>
-
-                <span id="emergencyContact">
-                    —
-                </span>
-
-            </div>
-
-
-            <div class="info">
-
-                <span class="label">
-                    Important Medical Information:
-                </span>
-                <br>
-
-                <span id="notes">
-                    —
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- DOCTOR INFORMATION -->
-
-        <h3 class="section-title">
-
-            👨‍⚕️ Doctor Information
-
-        </h3>
-
-
-        <div class="info">
-
-            <span class="label">
-                Doctor Name:
-            </span>
-            <br>
-
-            <span id="doctorName">
-                —
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Doctor Contact:
-            </span>
-            <br>
-
-            <span id="doctorContact">
-                —
-            </span>
-
-        </div>
-
-
-        <div class="button-container">
-
-            <button
-                id="logoutButton"
-                class="logout-button"
+            <select
+                id="qrReason"
+                required
             >
 
-                🔒 Logout
+                <option value="">
+
+                    Select a reason
+
+                </option>
+
+                <option value="card_lost">
+
+                    QR Card Lost
+
+                </option>
+
+                <option value="card_damaged">
+
+                    QR Card Damaged
+
+                </option>
+
+                <option value="security_concern">
+
+                    Security Concern
+
+                </option>
+
+                <option value="other">
+
+                    Other
+
+                </option>
+
+            </select>
+
+
+            <label for="qrDetails">
+
+                Additional Details
+
+            </label>
+
+
+            <textarea
+                id="qrDetails"
+                placeholder="Please explain why you need a new QR Code..."
+            ></textarea>
+
+
+            <button
+                type="submit"
+                id="submitQrRequestButton"
+                class="submit-request-button"
+            >
+
+                Submit QR Change Request
 
             </button>
 
-        </div>
 
+        </form>
+
+
+        <div
+            id="requestMessage"
+            class="request-message"
+        ></div>
+
+
+    </div>
+
+
+    <div class="button-container">
+
+        <button
+            id="logoutButton"
+            class="logout-button"
+        >
+
+            🔒 Logout
+
+        </button>
 
     </div>
 
 
 </div>
 
+</div><footer>© 2026 MediVault |
+Family Electronic Health Card System
 
-<footer>
-
-    © 2026 MediVault |
-    Family Electronic Health Card System
-
-</footer>
-
-
-<!-- Supabase Library -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-<script>
+</footer><!-- Supabase Library --><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
 
 
 const SUPABASE_URL =
@@ -667,6 +931,11 @@ const supabaseClient =
         SUPABASE_KEY
 
     );
+
+
+let currentSession = null;
+
+let currentPatient = null;
 
 
 
@@ -696,6 +965,11 @@ async function loadHealthCard() {
     }
 
 
+    // Save Current Session
+
+    currentSession = session;
+
+
     // Get Current User ID
 
     const userId =
@@ -723,45 +997,60 @@ async function loadHealthCard() {
 
     if (error) {
 
-    console.error("EHC Load Error:", error);
+        console.error(
+            "EHC Load Error:",
+            error
+        );
 
-    document
-        .getElementById("loading")
-        .style.display = "none";
 
-    const errorBox =
-        document.getElementById("error");
+        document
+            .getElementById("loading")
+            .style.display = "none";
 
-    errorBox.style.display = "block";
 
-    errorBox.innerHTML =
-        "Unable to load your Health Card.<br><br>" +
-        "<small>" +
-        "Error: " +
-        error.message +
-        "<br>" +
-        "Code: " +
-        (error.code || "N/A") +
-        "</small>";
+        const errorBox =
+            document.getElementById("error");
 
-    return;
 
-}
-    
+        errorBox.style.display =
+            "block";
+
+
+        errorBox.innerHTML =
+            "Unable to load your Health Card.<br><br>" +
+            "<small>" +
+            "Error: " +
+            error.message +
+            "<br>" +
+            "Code: " +
+            (error.code || "N/A") +
+            "</small>";
+
+
+        return;
+
+    }
+
+
+    // Save Current Patient
+
+    currentPatient = data;
 
 
     // Hide Loading
 
     document
         .getElementById("loading")
-        .style.display = "none";
+        .style.display =
+            "none";
 
 
     // Show Health Card
 
     document
         .getElementById("healthCard")
-        .style.display = "block";
+        .style.display =
+            "block";
 
 
     // Fill Data
@@ -885,6 +1174,207 @@ async function loadHealthCard() {
 
 
 
+// Show QR Request Form
+
+document
+    .getElementById("showQrRequestButton")
+    .addEventListener(
+
+        "click",
+
+        function() {
+
+            const form =
+                document.getElementById(
+                    "qrRequestForm"
+                );
+
+
+            if (
+                form.style.display ===
+                "block"
+            ) {
+
+                form.style.display =
+                    "none";
+
+            } else {
+
+                form.style.display =
+                    "block";
+
+            }
+
+        }
+
+    );
+
+
+
+// Submit QR Change Request
+
+document
+    .getElementById("qrRequestForm")
+.addEventListener(
+
+    "submit",
+
+    async function(event) {
+
+
+        event.preventDefault();
+
+
+        const reason =
+            document
+                .getElementById("qrReason")
+                .value;
+
+
+        const details =
+            document
+                .getElementById("qrDetails")
+                .value
+                .trim();
+
+
+        const submitButton =
+            document
+                .getElementById(
+                    "submitQrRequestButton"
+                );
+
+
+        const requestMessage =
+            document
+                .getElementById(
+                    "requestMessage"
+                );
+
+
+        if (
+            !currentSession ||
+            !currentPatient
+        ) {
+
+            requestMessage.className =
+                "request-message request-error";
+
+            requestMessage.textContent =
+                "Unable to submit request. Please login again.";
+
+            return;
+
+        }
+
+
+        submitButton.disabled =
+            true;
+
+
+        submitButton.textContent =
+            "Submitting...";
+
+
+        requestMessage.className =
+            "request-message";
+
+
+        requestMessage.textContent =
+            "";
+
+
+        try {
+
+
+            const {
+                error
+            } = await supabaseClient
+
+                .from(
+                    "qr_change_requests"
+                )
+
+                .insert({
+
+                    patient_id:
+                        currentPatient.patient_id,
+
+                    user_id:
+                        currentSession.user.id,
+
+                    reason:
+                        reason,
+
+                    details:
+                        details || null
+
+                });
+
+
+            if (error) {
+
+                throw error;
+
+            }
+
+
+            requestMessage.className =
+                "request-message request-success";
+
+
+            requestMessage.textContent =
+                "Your QR Change Request has been submitted successfully. It is now pending Admin verification.";
+
+
+            document
+                .getElementById(
+                    "qrRequestForm"
+                )
+                .style.display =
+                    "none";
+
+
+            submitButton.disabled =
+                false;
+
+
+            submitButton.textContent =
+                "Submit QR Change Request";
+
+
+        } catch (error) {
+
+
+            console.error(
+                "QR Request Error:",
+                error
+            );
+
+
+            requestMessage.className =
+                "request-message request-error";
+
+
+            requestMessage.textContent =
+                "Unable to submit your request. Please try again.";
+
+
+            submitButton.disabled =
+                false;
+
+
+            submitButton.textContent =
+                "Submit QR Change Request";
+
+        }
+
+    }
+
+);
+
+
+
 // Logout
 
 document
@@ -916,9 +1406,4 @@ document
 loadHealthCard();
 
 
-</script>
-
-
-</body>
-
-    </html>
+</script></body></html>
