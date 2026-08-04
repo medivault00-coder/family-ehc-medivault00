@@ -1,203 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>MediVault - Electronic Health Card</title>
 
-    <title>MediVault - Family Electronic Health Card</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f4f7f9;
-            color: #222;
-        }
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f7f9;
+        color: #222;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
 
-        header {
-            background: #0b7285;
-            color: white;
-            text-align: center;
-            padding: 30px 15px;
-        }
+    header {
+        background: #0b7285;
+        color: white;
+        text-align: center;
+        padding: 45px 20px;
+    }
 
-        .login-button-container {
-            text-align: center;
-            margin-top: 20px;
-        }
+    header h1 {
+        margin: 0;
+        font-size: 34px;
+    }
 
-        .login-button {
-            display: inline-block;
-            padding: 12px 25px;
-            background: white;
-            color: #0b7285;
-            text-decoration: none;
-            border-radius: 7px;
-            font-weight: bold;
-        }
+    header p {
+        margin: 12px 0 0;
+        font-size: 17px;
+    }
 
-        .login-button:hover {
-            background: #e9ecef;
-        }
+    .container {
+        width: 100%;
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 20px;
+        flex: 1;
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
-        }
+    .welcome-card {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
 
-        .section-title {
-            text-align: center;
-        }
+    .welcome-card h2 {
+        color: #0b7285;
+        margin-top: 0;
+    }
 
-        .members {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+    .welcome-card p {
+        color: #555;
+        line-height: 1.7;
+    }
 
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            text-align: center;
-        }
+    .login-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 13px 30px;
+        background: #0b7285;
+        color: white;
+        text-decoration: none;
+        border-radius: 7px;
+        font-size: 16px;
+        font-weight: bold;
+    }
 
-        .card h3 {
-            color: #0b7285;
-        }
+    .login-button:hover {
+        background: #095c6b;
+    }
 
-        .button {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: #0b7285;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-        }
+    .security-note {
+        margin-top: 25px;
+        padding: 15px;
+        background: #f1f8fa;
+        border-radius: 8px;
+        color: #555;
+        font-size: 14px;
+    }
 
-        .button:hover {
-            background: #095c6b;
-        }
+    footer {
+        text-align: center;
+        padding: 20px;
+        background: #e9ecef;
+        color: #555;
+    }
+</style>
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            background: #e9ecef;
-        }
-    </style>
-</head>
+</head><body><header><h1>💙 MediVault</h1>
 
-<body>
+<p>
+    Secure Electronic Health Card System
+</p>
 
-<header>
+</header><div class="container"><div class="welcome-card">
 
-    <h1>💙 MediVault</h1>
-
-    <p>Your Personal Family Electronic Health Card System</p>
-
-    <!-- Login Button -->
-
-    <div class="login-button-container">
-
-<a
-    href="https://medivault00-coder.github.io/family-ehc-medivault00/login.html"
-    class="login-button">
-    🔐 Login
-</a>
-
-    </div>
-
-</header>
-
-
-<div class="container">
-
-    <h2 class="section-title">
-        Family Members
+    <h2>
+        Welcome to MediVault
     </h2>
 
+    <p>
+        Access your personal Electronic Health Card securely
+        using your Patient ID and Password.
+    </p>
 
-    <div class="members">
+    <a
+        href="login.html"
+        class="login-button">
+        🔐 Login to Your Health Card
+    </a>
 
-
-        <!-- Family Member 1 -->
-
-        <div class="card">
-
-            <h3>
-                MD HAFIJUL ISLAM JIHAD
-            </h3>
-
-            <p>
-                Electronic Health Card
-            </p>
-
-            <a
-                href="member1.html"
-                class="button">
-                View Health Card
-            </a>
-
-        </div>
-
-
-        <!-- Family Member 2 -->
-
-        <div class="card">
-
-            <h3>
-                Family Member 2
-            </h3>
-
-            <p>
-                Electronic Health Card
-            </p>
-
-            <a
-                href="#"
-                class="button">
-                Coming Soon
-            </a>
-
-        </div>
-
-
-        <!-- Family Member 3 -->
-
-        <div class="card">
-
-            <h3>
-                Family Member 3
-            </h3>
-
-            <p>
-                Electronic Health Card
-            </p>
-
-            <a
-                href="#"
-                class="button">
-                Coming Soon
-            </a>
-
-        </div>
-
-
+    <div class="security-note">
+        🔒 Your health information is protected with
+        secure authentication.
     </div>
 
 </div>
 
+</div><footer>© 2026 MediVault |
+Family Electronic Health Card System
 
-<footer>
-
-    © 2026 MediVault | Family Electronic Health Card System
-
-</footer>
-
-
-</body>
+</footer></body>
 </html>
