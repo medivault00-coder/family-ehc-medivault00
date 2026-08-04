@@ -1,0 +1,845 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>MediVault | Secure Health Card</title>
+
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    body {
+
+        margin: 0;
+
+        font-family: Arial, sans-serif;
+
+        background: #f4f7f9;
+
+        color: #222;
+
+    }
+
+
+    header {
+
+        background: #0b7285;
+
+        color: white;
+
+        text-align: center;
+
+        padding: 25px 15px;
+
+    }
+
+
+    header h1 {
+
+        margin: 0;
+
+        font-size: 30px;
+
+    }
+
+
+    header p {
+
+        margin: 8px 0 0;
+
+    }
+
+
+    .container {
+
+        max-width: 750px;
+
+        margin: 30px auto;
+
+        padding: 15px;
+
+    }
+
+
+    .health-card {
+
+        background: white;
+
+        padding: 30px;
+
+        border-radius: 15px;
+
+        box-shadow:
+            0 4px 15px
+            rgba(0, 0, 0, 0.1);
+
+    }
+
+
+    .health-card h2 {
+
+        text-align: center;
+
+        color: #0b7285;
+
+        margin-top: 0;
+
+    }
+
+
+    .card-subtitle {
+
+        text-align: center;
+
+        color: #666;
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .section-title {
+
+        color: #0b7285;
+
+        border-bottom:
+            2px solid #0b7285;
+
+        padding-bottom: 8px;
+
+        margin-top: 30px;
+
+    }
+
+
+    .info {
+
+        padding: 14px 0;
+
+        border-bottom:
+            1px solid #ddd;
+
+        line-height: 1.6;
+
+    }
+
+
+    .label {
+
+        font-weight: bold;
+
+        color: #0b7285;
+
+    }
+
+
+    .emergency {
+
+        margin-top: 25px;
+
+        padding: 20px;
+
+        background: #fff3f3;
+
+        border-radius: 10px;
+
+        border-left:
+            5px solid #d00000;
+
+    }
+
+
+    .emergency h3 {
+
+        color: #d00000;
+
+        margin-top: 0;
+
+    }
+
+
+    .loading {
+
+        text-align: center;
+
+        padding: 40px;
+
+        font-size: 18px;
+
+        color: #0b7285;
+
+    }
+
+
+    .error {
+
+        text-align: center;
+
+        padding: 40px;
+
+        color: #d00000;
+
+    }
+
+
+    footer {
+
+        text-align: center;
+
+        padding: 20px;
+
+        margin-top: 30px;
+
+        background: #e9ecef;
+
+        color: #555;
+
+    }
+
+
+    @media (max-width: 600px) {
+
+        .health-card {
+
+            padding: 20px;
+
+        }
+
+        header h1 {
+
+            font-size: 25px;
+
+        }
+
+    }
+
+</style>
+
+</head><body><header><h1>💙 MediVault</h1>
+
+<p>Secure Electronic Health Card</p>
+
+</header><div class="container"><div id="loading" class="loading">
+
+    Loading Electronic Health Card...
+
+</div>
+
+
+<div
+    id="error"
+    class="error"
+    style="display:none;"
+>
+
+    Unable to load Health Card.
+
+</div>
+
+
+<div
+    id="healthCard"
+    class="health-card"
+    style="display:none;"
+>
+
+
+    <h2 id="fullName"></h2>
+
+
+    <p class="card-subtitle">
+
+        Electronic Health Card
+
+    </p>
+
+
+    <h3 class="section-title">
+
+        👤 Personal Information
+
+    </h3>
+
+
+    <div class="info">
+
+        <span class="label">
+            Patient ID:
+        </span>
+
+        <br>
+
+        <span id="patientId">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Full Name:
+        </span>
+
+        <br>
+
+        <span id="name">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Date of Birth:
+        </span>
+
+        <br>
+
+        <span id="dateOfBirth">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Gender:
+        </span>
+
+        <br>
+
+        <span id="gender">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Blood Group:
+        </span>
+
+        <br>
+
+        <span id="bloodGroup">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Personal Contact Number:
+        </span>
+
+        <br>
+
+        <span id="phone">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Address:
+        </span>
+
+        <br>
+
+        <span id="address">
+            —
+        </span>
+
+    </div>
+
+
+    <h3 class="section-title">
+
+        🏥 Medical Information
+
+    </h3>
+
+
+    <div class="info">
+
+        <span class="label">
+            Medical History:
+        </span>
+
+        <br>
+
+        <span id="medicalHistory">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Current Medications:
+        </span>
+
+        <br>
+
+        <span id="currentMedications">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Allergies:
+        </span>
+
+        <br>
+
+        <span id="allergies">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Surgical History:
+        </span>
+
+        <br>
+
+        <span id="surgicalHistory">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Chronic Conditions:
+        </span>
+
+        <br>
+
+        <span id="chronicConditions">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Disabilities:
+        </span>
+
+        <br>
+
+        <span id="disabilities">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Family Medical History:
+        </span>
+
+        <br>
+
+        <span id="familyMedicalHistory">
+            —
+        </span>
+
+    </div>
+
+
+    <h3 class="section-title">
+
+        🚨 Emergency Information
+
+    </h3>
+
+
+    <div class="emergency">
+
+
+        <h3>
+            Emergency Contact
+        </h3>
+
+
+        <div class="info">
+
+            <span class="label">
+                Emergency Contact:
+            </span>
+
+            <br>
+
+            <span id="emergencyContact">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info">
+
+            <span class="label">
+                Important Medical Information:
+            </span>
+
+            <br>
+
+            <span id="note">
+                —
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <h3 class="section-title">
+
+        👨‍⚕️ Doctor Information
+
+    </h3>
+
+
+    <div class="info">
+
+        <span class="label">
+            Doctor Name:
+        </span>
+
+        <br>
+
+        <span id="doctorName">
+            —
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="label">
+            Doctor Contact:
+        </span>
+
+        <br>
+
+        <span id="doctorContact">
+            —
+        </span>
+
+    </div>
+
+
+</div>
+
+</div><footer>© 2026 MediVault |
+Family Electronic Health Card System
+
+</footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+
+
+const SUPABASE_URL =
+    "https://wzstqwuxinbiyommbljl.supabase.co";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_4pyUeXGZuNoSrNgvdMqeeg_lfeq_VoS";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+
+        SUPABASE_URL,
+
+        SUPABASE_KEY
+
+    );
+
+
+
+async function loadQRCodeHealthCard() {
+
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const qrToken =
+        params.get("token");
+
+
+    if (!qrToken) {
+
+        showError(
+            "Invalid QR Code."
+        );
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } = await supabaseClient.rpc(
+
+        "get_patient_by_qr_token",
+
+        {
+            p_qr_token: qrToken
+        }
+
+    );
+
+
+    if (error) {
+
+        console.error(
+            "QR Access Error:",
+            error
+        );
+
+        showError(
+            "Unable to access Health Card."
+        );
+
+        return;
+
+    }
+
+
+    if (!data || data.length === 0) {
+
+        showError(
+            "Invalid or expired QR Code."
+        );
+
+        return;
+
+    }
+
+
+    const patient =
+        data[0];
+
+
+    document
+        .getElementById("loading")
+        .style.display = "none";
+
+
+    document
+        .getElementById("healthCard")
+        .style.display = "block";
+
+
+    document
+        .getElementById("fullName")
+        .textContent =
+            patient.full_name ||
+            "Not Added";
+
+
+    document
+        .getElementById("patientId")
+        .textContent =
+            patient.patient_id ||
+            "Not Added";
+
+
+    document
+        .getElementById("name")
+        .textContent =
+            patient.full_name ||
+            "Not Added";
+
+
+    document
+        .getElementById("dateOfBirth")
+        .textContent =
+            patient.date_of_birth ||
+            "Not Added";
+
+
+    document
+        .getElementById("gender")
+        .textContent =
+            patient.gender ||
+            "Not Added";
+
+
+    document
+        .getElementById("bloodGroup")
+        .textContent =
+            patient.blood_group ||
+            "Not Added";
+
+
+    document
+        .getElementById("phone")
+        .textContent =
+            patient.phone ||
+            "Not Added";
+
+
+    document
+        .getElementById("address")
+        .textContent =
+            patient.address ||
+            "Not Added";
+
+
+    document
+        .getElementById("medicalHistory")
+        .textContent =
+            patient.medical_history ||
+            "Not Added";
+
+
+    document
+        .getElementById("currentMedications")
+        .textContent =
+            patient.current_medications ||
+            "Not Added";
+
+
+    document
+        .getElementById("allergies")
+        .textContent =
+            patient.allergies ||
+            "Not Added";
+
+
+    document
+        .getElementById("surgicalHistory")
+        .textContent =
+            patient.surgical_history ||
+            "Not Added";
+
+
+    document
+        .getElementById("chronicConditions")
+        .textContent =
+            patient.chronic_conditions ||
+            "Not Added";
+
+
+    document
+        .getElementById("disabilities")
+        .textContent =
+            patient.disabilities ||
+            "Not Added";
+
+
+    document
+        .getElementById("familyMedicalHistory")
+        .textContent =
+            patient.family_medical_history ||
+            "Not Added";
+
+
+    document
+        .getElementById("emergencyContact")
+        .textContent =
+            patient.emergency_contact ||
+            "Not Added";
+
+
+    document
+        .getElementById("note")
+        .textContent =
+            patient.note ||
+            "Not Added";
+
+
+    document
+        .getElementById("doctorName")
+        .textContent =
+            patient.doctor_name ||
+            "Not Added";
+
+
+    document
+        .getElementById("doctorContact")
+        .textContent =
+            patient.doctor_contact ||
+            "Not Added";
+
+}
+
+
+
+function showError(
+    errorMessage
+) {
+
+
+    document
+        .getElementById("loading")
+        .style.display = "none";
+
+
+    const errorBox =
+        document.getElementById(
+            "error"
+        );
+
+
+    errorBox.style.display =
+        "block";
+
+
+    errorBox.textContent =
+        errorMessage;
+
+}
+
+
+
+loadQRCodeHealthCard();
+
+
+</script></body></html>
