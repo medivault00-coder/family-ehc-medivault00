@@ -1,1794 +1,1674 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
 name="viewport"
 content="width=device-width, initial-scale=1.0"
+>
 
-«»
+<title>MediVault | Electronic Health Card</title>
 
-<title>MediVault | Electronic Health Card</title><style>
+<style>
 
 * {
     box-sizing: border-box;
 }
 
-
 body {
-
     margin: 0;
-
     font-family: Arial, sans-serif;
-
     background: #f4f7f9;
-
     color: #222;
-
 }
-
 
 header {
-
     background: #0b7285;
-
     color: white;
-
     text-align: center;
-
     padding: 25px 15px;
-
 }
-
 
 header h1 {
-
     margin: 0;
-
     font-size: 30px;
-
 }
-
 
 header p {
-
     margin: 8px 0 0;
-
 }
-
 
 .container {
-
     max-width: 750px;
-
     margin: 30px auto;
-
     padding: 15px;
-
 }
 
-
 .health-card {
-
     background: white;
-
     padding: 30px;
-
     border-radius: 15px;
-
     box-shadow:
         0 4px 15px
         rgba(0, 0, 0, 0.1);
-
 }
-
 
 .health-card h2 {
-
     text-align: center;
-
     color: #0b7285;
-
     margin-top: 0;
-
 }
-
 
 .card-subtitle {
-
     text-align: center;
-
     color: #666;
-
     margin-bottom: 30px;
-
 }
-
 
 .section-title {
-
     color: #0b7285;
-
-    border-bottom:
-        2px solid #0b7285;
-
+    border-bottom: 2px solid #0b7285;
     padding-bottom: 8px;
-
     margin-top: 30px;
-
 }
-
 
 .info {
-
     padding: 14px 0;
-
-    border-bottom:
-        1px solid #ddd;
-
+    border-bottom: 1px solid #ddd;
     line-height: 1.6;
-
 }
-
 
 .label {
-
     font-weight: bold;
-
     color: #0b7285;
-
 }
-
 
 .emergency {
-
     margin-top: 25px;
-
     padding: 20px;
-
     background: #fff3f3;
-
     border-radius: 10px;
-
-    border-left:
-        5px solid #d00000;
-
+    border-left: 5px solid #d00000;
 }
-
 
 .emergency h3 {
-
     color: #d00000;
-
     margin-top: 0;
-
 }
-
 
 .button-container {
-
     text-align: center;
-
     margin-top: 30px;
-
 }
-
 
 .logout-button {
-
     padding: 12px 25px;
-
     border: none;
-
     border-radius: 7px;
-
     background: #d00000;
-
-    color: white;
-
+    color: white !important;
     font-size: 15px;
-
     font-weight: bold;
-
     cursor: pointer;
-
 }
-
 
 .logout-button:hover {
-
     background: #a80000;
-
 }
-
 
 /* QR CHANGE REQUEST */
 
 .qr-request-section {
-
     margin-top: 35px;
-
     padding: 20px;
-
     background: #f1f8fa;
-
     border-radius: 10px;
-
-    border-left:
-        5px solid #0b7285;
-
+    border-left: 5px solid #0b7285;
 }
-
 
 .qr-request-section h3 {
-
     color: #0b7285;
-
     margin-top: 0;
-
 }
-
 
 .qr-request-button {
-
     width: 100%;
-
     padding: 13px;
-
     border: none;
-
     border-radius: 7px;
-
     background: #0b7285;
-
-    color: white;
-
+    color: white !important;
     font-size: 15px;
-
     font-weight: bold;
-
     cursor: pointer;
-
     margin-top: 10px;
-
 }
-
 
 .qr-request-button:hover {
-
     background: #095c6b;
-
 }
-
 
 .qr-request-button:disabled {
-
     background: #999;
-
     cursor: not-allowed;
-
 }
-
 
 .qr-form {
-
     display: none;
-
     margin-top: 20px;
-
 }
-
 
 .qr-form label {
-
     display: block;
-
     margin-top: 15px;
-
     margin-bottom: 7px;
-
     font-weight: bold;
-
     color: #333;
-
 }
-
 
 .qr-form select,
-
 .qr-form textarea {
-
     width: 100%;
-
     padding: 12px;
-
     border: 1px solid #ccc;
-
     border-radius: 7px;
-
     font-size: 15px;
-
     font-family: Arial, sans-serif;
-
 }
-
 
 .qr-form textarea {
-
     min-height: 100px;
-
     resize: vertical;
-
 }
-
 
 .submit-request-button {
-
     width: 100%;
-
     padding: 13px;
-
     margin-top: 20px;
-
     border: none;
-
     border-radius: 7px;
-
     background: #198754;
-
-    color: white;
-
+    color: white !important;
     font-size: 15px;
-
     font-weight: bold;
-
     cursor: pointer;
-
 }
-
 
 .submit-request-button:hover {
-
     background: #146c43;
-
 }
-
 
 .submit-request-button:disabled {
-
     background: #999;
-
     cursor: not-allowed;
-
 }
-
 
 .request-message {
-
     display: none;
-
     margin-top: 15px;
-
     padding: 12px;
-
     border-radius: 7px;
-
     text-align: center;
-
     font-size: 14px;
-
 }
-
 
 .request-success {
-
     display: block;
-
     background: #e8f7ee;
-
     color: #146c43;
-
 }
-
 
 .request-error {
-
     display: block;
-
     background: #fff3f3;
-
     color: #c00000;
-
 }
-
 
 /* QR REQUEST STATUS */
 
 .qr-request-status {
-
     display: none;
-
     margin-top: 20px;
-
     padding: 18px;
-
     background: #ffffff;
-
     border-radius: 10px;
-
     border: 1px solid #ddd;
-
 }
-
 
 .qr-request-status h4 {
-
     margin-top: 0;
-
     color: #0b7285;
-
 }
-
 
 .status-pending {
-
     color: #856404;
-
     font-weight: bold;
-
 }
-
 
 .status-approved {
-
     color: #146c43;
-
     font-weight: bold;
-
 }
-
 
 .status-rejected {
-
     color: #c00000;
-
     font-weight: bold;
-
 }
-
 
 .admin-note {
-
     margin-top: 15px;
-
     padding: 12px;
-
     background: #f4f7f9;
-
     border-radius: 7px;
-
 }
-
 
 .loading {
-
     text-align: center;
-
     padding: 40px;
-
     font-size: 18px;
-
     color: #0b7285;
-
 }
-
 
 .error {
-
     text-align: center;
-
     padding: 40px;
-
     color: #d00000;
-
 }
-
 
 footer {
-
     text-align: center;
-
     padding: 20px;
-
     margin-top: 30px;
-
     background: #e9ecef;
-
     color: #555;
-
 }
-
 
 @media (max-width: 600px) {
 
     .health-card {
-
         padding: 20px;
-
     }
 
     header h1 {
-
         font-size: 25px;
-
     }
 
 }
 
-    /* FIX BUTTON TEXT VISIBILITY */
+</style>
 
-.qr-request-button {
-    color: white !important;
-}
+</head>
 
-.submit-request-button {
-    color: white !important;
-}
+<body>
 
-.logout-button {
-    color: white !important;
-    }
-    
-</style></head><body><header><h1>💙 MediVault</h1><p>Electronic Health Card</p></header><div class="container"><div id="loading" class="loading">Loading your Electronic Health Card...
+<header>
 
-</div><div
-    id="error"
-    class="error"
-    style="display:none;"
->Unable to load your Health Card.
+<h1>💙 MediVault</h1>
 
-</div><div
-    id="healthCard"
-    class="health-card"
-    style="display:none;"
-><h2 id="fullName"></h2><p class="card-subtitle">Personal Electronic Health Card
+<p>Electronic Health Card</p>
 
-</p><!-- PERSONAL INFORMATION --><h3 class="section-title">👤 Personal Information
+</header>
 
-</h3><div class="info"><span class="label">Patient ID:
+<div class="container">
 
-</span><br><span id="patientId">—
+<div id="loading" class="loading">
 
-</span></div><div class="info"><span class="label">Full Name:
+Loading your Electronic Health Card...
 
-</span><br><span id="name">—
+</div>
 
-</span></div><div class="info"><span class="label">Date of Birth:
+<div
+id="error"
+class="error"
+style="display:none;"
+>
 
-</span><br><span id="dateOfBirth">—
+Unable to load your Health Card.
 
-</span></div><div class="info"><span class="label">Gender:
+</div>
 
-</span><br><span id="gender">—
+<div
+id="healthCard"
+class="health-card"
+style="display:none;"
+>
 
-</span></div><div class="info"><span class="label">Blood Group:
+<h2 id="fullName"></h2>
 
-</span><br><span id="bloodGroup">—
+<p class="card-subtitle">
 
-</span></div><div class="info"><span class="label">Personal Contact Number:
+Personal Electronic Health Card
 
-</span><br><span id="phone">—
+</p>
 
-</span></div><div class="info"><span class="label">Address:
+<!-- PERSONAL INFORMATION -->
 
-</span><br><span id="address">—
+<h3 class="section-title">
 
-</span></div><!-- MEDICAL INFORMATION --><h3 class="section-title">🏥 Medical Information
+👤 Personal Information
 
-</h3><div class="info"><span class="label">Medical History:
+</h3>
 
-</span><br><span id="medicalHistory">—
+<div class="info">
 
-</span></div><div class="info"><span class="label">Current Medications:
+<span class="label">
 
-</span><br><span id="currentMedications">—
+Patient ID:
 
-</span></div><div class="info"><span class="label">Allergies:
+</span>
 
-</span><br><span id="allergies">—
+<br>
 
-</span></div><div class="info"><span class="label">Surgical History:
+<span id="patientId">
 
-</span><br><span id="surgicalHistory">—
+—
 
-</span></div><div class="info"><span class="label">Chronic Conditions:
+</span>
 
-</span><br><span id="chronicConditions">—
+</div>
 
-</span></div><div class="info"><span class="label">Disabilities:
+<div class="info">
 
-</span><br><span id="disabilities">—
+<span class="label">
 
-</span></div><div class="info"><span class="label">Family Medical History:
+Full Name:
 
-</span><br><span id="familyMedicalHistory">—
+</span>
 
-</span></div><!-- EMERGENCY INFORMATION --><h3 class="section-title">🚨 Emergency Information
+<br>
 
-</h3><div class="emergency"><h3>Emergency Contact
+<span id="name">
 
-</h3><div class="info"><span class="label">Emergency Contact:
+—
 
-</span><br><span id="emergencyContact">—
+</span>
 
-</span></div><div class="info"><span class="label">Important Medical Information:
+</div>
 
-</span><br><span id="notes">—
+<div class="info">
 
-</span></div></div><!-- DOCTOR INFORMATION --><h3 class="section-title">👨‍⚕️ Doctor Information
+<span class="label">
 
-</h3><div class="info"><span class="label">Doctor Name:
+Date of Birth:
 
-</span><br><span id="doctorName">—
+</span>
 
-</span></div><div class="info"><span class="label">Doctor Contact:
+<br>
 
-</span><br><span id="doctorContact">—
+<span id="dateOfBirth">
 
-</span></div><!-- QR CHANGE REQUEST --><div class="qr-request-section"><h3>🔄 QR Code Management
+—
 
-</h3><p>If your MediVault QR Code is lost, damaged,
-or you believe it may be compromised,
-you can request a new QR Code.
+</span>
 
-</p><button
-type="button"
-id="showQrRequestButton"
-class="qr-request-button"
+</div>
 
-«»
+<div class="info">
 
-🔐 Request QR Code Change
+<span class="label">
 
-</button><form
-    id="qrRequestForm"
-    class="qr-form"
-><label for="qrReason">Reason for QR Code Change
+Gender:
 
-</label><select
-id="qrReason"
-required
+</span>
 
-«»
+<br>
 
-<option value="">Select a reason
+<span id="gender">
 
-</option><option value="card_lost">QR Card Lost
+—
 
-</option><option value="card_damaged">QR Card Damaged
+</span>
 
-</option><option value="security_concern">Security Concern
+</div>
 
-</option><option value="other">Other
+<div class="info">
 
-</option></select><label for="qrDetails">Additional Details
+<span class="label">
 
-</label><textarea
-    id="qrDetails"
-    placeholder="Please explain why you need a new QR Code..."
-></textarea><button
-type="submit"
-id="submitQrRequestButton"
-class="submit-request-button"
+Blood Group:
 
-«»
+</span>
 
-Submit QR Change Request
+<br>
 
-</button></form><div
-    id="requestMessage"
-    class="request-message"
-></div><!-- QR REQUEST STATUS --><div
-    id="qrRequestStatus"
-    class="qr-request-status"
-><h4>📋 QR Change Request Status
+<span id="bloodGroup">
 
-</h4><p>Status:
+—
 
-<span id="qrStatusText">—
+</span>
 
-</span></p><p>Request Date:
+</div>
 
-<span id="qrRequestDate">—
+<div class="info">
 
-</span></p><div
-    id="qrAdminNote"
-    class="admin-note"
-    style="display:none;"
-><strong>Admin Note:
+<span class="label">
 
-</strong><br><span id="qrAdminNoteText"></span></div></div></div><div class="button-container"><button
-id="logoutButton"
-class="logout-button"
+Personal Contact Number:
 
-«»
+</span>
 
-🔒 Logout
+<br>
 
-</button></div></div></div><footer>© 2026 MediVault |
+<span id="phone">
+
+—
+
+</span>
+
+</div>
+
+<div class="info">
+
+<span class="label">
+
+Address:
+
+</span>
+
+<br>
+
+<span id="address">
+
+—
+
+</span>
+
+</div>
+
+<!-- MEDICAL INFORMATION -->
+
+<h3 class="section-title">
+
+🏥 Medical Information
+
+</h3>
+
+<div class="info">
+
+<span class="label">
+
+Medical History:
+
+</span>
+
+<br>
+
+<span id="medicalHistory">
+
+—
+
+</span>
+
+</div>
+
+<div class="info">
+
+<span class="label">
+
+Current Medications:
+
+</span>
+
+<br>
+
+<span id="currentMedications">
+
+—
+
+</span>
+
+</div>
+
+<div class="info">
+
+<span class="label">
+
+Allergies:
+
+</span>
+
+<br>
+
+<span id="allergies">
+
+—
+
+</span>
+
+</div>
+
+<div class="info">
+
+<span class="label">
+
+Surgical History:
+
+</span>
+
+<br>
+
+<span id="surgicalHistory">
+
+—
+
+</span>
+
+</div>
+
+<div class="info">
+
+<span class="label">
+
+Chronic Conditions:
+
+</span>
+
+<br>
+
+<span id="chronicConditions">
+
+—
+
+</span>
+
+</div>
+
+<div class="info">
+
+<span class="label">
+
+Disabilities:
+
+</span>
+
+<br>
+
+<span id="disabilities">
+
+—
+
+</span>
+
+</div>
+
+<div class="info">
+
+<span class="label">
+
+Family Medical History:
+
+</span>
+
+<br>
+
+<span id="familyMedicalHistory">
+
+—
+
+</span>
+
+</div>
+
+<!-- EMERGENCY INFORMATION -->
+
+<h3 class="section-title">
+
+🚨 Emergency Information
+
+</h3>
+
+<div class="emergency">
+
+<h3>
+
+Emergency Contact
+
+</h3>
+
+<div class="info">
+
+<span class="label">
+
+Emergency Contact:
+
+</span>
+
+<br>
+
+<span id="emergencyContact">
+
+—
+
+</span>
+
+</div>
+
+<div class="info">
+
+<span class="label">
+
+Important Medical Information:
+
+</span>
+
+<br>
+
+<span id="notes">
+
+—
+
+</span>
+
+</div>
+
+</div>
+
+<!-- DOCTOR INFORMATION -->
+
+<h3 class="section-title">
+
+👨‍⚕️ Doctor Information
+
+</h3>
+
+<div class="info">
+
+<span class="label">
+
+Doctor Name:
+
+</span>
+
+<br>
+
+<span id="doctorName">
+
+—
+
+</span>
+
+</div>
+
+<div class="info">
+
+<span class="label">
+
+Doctor Contact:
+
+</span>
+
+<br>
+
+<span id="doctorContact">
+
+—
+
+</span>
+
+    </div>
+
+    <!-- QR CHANGE REQUEST -->
+
+<div class="qr-request-section">
+
+    <h3>
+        🔄 QR Code Management
+    </h3>
+
+    <p>
+        If your MediVault QR Code is lost, damaged,
+        or you believe it may be compromised,
+        you can request a new QR Code.
+    </p>
+
+    <button
+        type="button"
+        id="showQrRequestButton"
+        class="qr-request-button"
+    >
+        🔐 Request QR Code Change
+    </button>
+
+
+    <!-- QR REQUEST FORM -->
+
+    <form
+        id="qrRequestForm"
+        class="qr-form"
+    >
+
+        <label for="qrReason">
+
+            Reason for QR Code Change
+
+        </label>
+
+        <select
+            id="qrReason"
+            required
+        >
+
+            <option value="">
+
+                Select a reason
+
+            </option>
+
+            <option value="card_lost">
+
+                QR Card Lost
+
+            </option>
+
+            <option value="card_damaged">
+
+                QR Card Damaged
+
+            </option>
+
+            <option value="security_concern">
+
+                Security Concern
+
+            </option>
+
+            <option value="other">
+
+                Other
+
+            </option>
+
+        </select>
+
+
+        <label for="qrDetails">
+
+            Additional Details
+
+        </label>
+
+        <textarea
+            id="qrDetails"
+            placeholder="Please explain why you need a new QR Code..."
+        ></textarea>
+
+
+        <button
+            type="submit"
+            id="submitQrRequestButton"
+            class="submit-request-button"
+        >
+
+            Submit QR Change Request
+
+        </button>
+
+    </form>
+
+
+    <!-- REQUEST MESSAGE -->
+
+    <div
+        id="requestMessage"
+        class="request-message"
+    ></div>
+
+
+    <!-- QR REQUEST STATUS -->
+
+    <div
+        id="qrRequestStatus"
+        class="qr-request-status"
+    >
+
+        <h4>
+
+            📋 QR Change Request Status
+
+        </h4>
+
+
+        <p>
+
+            Status:
+
+            <span id="qrStatusText">
+
+                —
+
+            </span>
+
+        </p>
+
+
+        <p>
+
+            Request Date:
+
+            <span id="qrRequestDate">
+
+                —
+
+            </span>
+
+        </p>
+
+
+        <div
+            id="qrAdminNote"
+            class="admin-note"
+            style="display:none;"
+        >
+
+            <strong>
+
+                Admin Note:
+
+            </strong>
+
+            <br>
+
+            <span id="qrAdminNoteText">
+
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- LOGOUT BUTTON -->
+
+<div class="button-container">
+
+    <button
+        id="logoutButton"
+        class="logout-button"
+    >
+
+        🔒 Logout
+
+    </button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<footer>
+
+© 2026 MediVault |
 
 Family Electronic Health Card System
 
-</footer><!-- Supabase Library --><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+</footer>
 
+
+<!-- SUPABASE LIBRARY -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
 
 const SUPABASE_URL =
-
-"https://wzstqwuxinbiyommbljl.supabase.co";
-
+    "https://wzstqwuxinbiyommbljl.supabase.co";
 
 const SUPABASE_KEY =
-
-"sb_publishable_4pyUeXGZuNoSrNgvdMqeeg_lfeq_VoS";
-
+    "sb_publishable_4pyUeXGZuNoSrNgvdMqeeg_lfeq_VoS";
 
 const supabaseClient =
-
-window.supabase.createClient(
-
-SUPABASE_URL,
-
-SUPABASE_KEY
-
-);
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
 let currentSession = null;
-
 let currentPatient = null;
 
 
-
+// ==========================================
 // LOAD HEALTH CARD
+// ==========================================
 
 async function loadHealthCard() {
 
+    const {
+        data: {
+            session
+        }
+    } = await supabaseClient
+        .auth
+        .getSession();
 
-const {
 
-data: {
+    // যদি Login করা না থাকে
+    if (!session) {
 
-session
+        window.location.href =
+            "login.html";
 
-}
+        return;
 
-} = await supabaseClient
+    }
 
-.auth
 
-.getSession();
+    currentSession = session;
 
 
-if (!session) {
+    const userId =
+        session.user.id;
 
 
-window.location.href =
+    // Patient Information Load
+    const {
+        data,
+        error
+    } = await supabaseClient
 
-"login.html";
+        .from("patients")
 
+        .select("*")
 
-return;
+        .eq(
+            "user_id",
+            userId
+        )
 
+        .single();
 
-}
 
+    // Error
+    if (error) {
 
-currentSession = session;
+        console.error(
+            "EHC Load Error:",
+            error
+        );
 
 
-const userId =
+        document
+            .getElementById("loading")
+            .style.display =
+                "none";
 
-session.user.id;
 
+        const errorBox =
+            document
+                .getElementById("error");
 
 
-const {
+        errorBox.style.display =
+            "block";
 
-data,
 
-error
+        errorBox.innerHTML =
+            "Unable to load your Health Card.<br><br>" +
 
-} = await supabaseClient
+            "<small>" +
 
+            "Error: " +
+            error.message +
 
-.from("patients")
+            "<br>" +
 
+            "Code: " +
+            (error.code || "N/A") +
 
-.select("*")
+            "</small>";
 
 
-.eq(
+        return;
 
-"user_id",
+    }
 
-userId
 
-)
+    // Patient Data Save
+    currentPatient = data;
 
 
-.single();
+    // Loading Hide
+    document
+        .getElementById("loading")
+        .style.display =
+            "none";
 
 
+    // Health Card Show
+    document
+        .getElementById("healthCard")
+        .style.display =
+            "block";
 
-if (error) {
 
+    // ==========================================
+    // DISPLAY PATIENT INFORMATION
+    // ==========================================
 
-console.error(
+    document
+        .getElementById("fullName")
+        .textContent =
+            data.full_name ||
+            "Not Added";
 
-"EHC Load Error:",
 
-error
+    document
+        .getElementById("patientId")
+        .textContent =
+            data.patient_id ||
+            "Not Added";
 
-);
 
+    document
+        .getElementById("name")
+        .textContent =
+            data.full_name ||
+            "Not Added";
 
-document
 
-.getElementById("loading")
+    document
+        .getElementById("dateOfBirth")
+        .textContent =
+            data.date_of_birth ||
+            "Not Added";
 
-.style.display =
 
-"none";
+    document
+        .getElementById("gender")
+        .textContent =
+            data.gender ||
+            "Not Added";
 
 
-const errorBox =
+    document
+        .getElementById("bloodGroup")
+        .textContent =
+            data.blood_group ||
+            "Not Added";
 
-document
 
-.getElementById("error");
+    document
+        .getElementById("phone")
+        .textContent =
+            data.phone ||
+            "Not Added";
 
 
-errorBox.style.display =
+    document
+        .getElementById("address")
+        .textContent =
+            data.address ||
+            "Not Added";
 
-"block";
 
+    document
+        .getElementById("medicalHistory")
+        .textContent =
+            data.medical_history ||
+            "Not Added";
 
-errorBox.innerHTML =
 
-"Unable to load your Health Card.<br><br>" +
+    document
+        .getElementById("currentMedications")
+        .textContent =
+            data.current_medications ||
+            "Not Added";
 
-"<small>" +
 
-"Error: " +
+    document
+        .getElementById("allergies")
+        .textContent =
+            data.allergies ||
+            "Not Added";
 
-error.message +
 
-"<br>" +
+    document
+        .getElementById("surgicalHistory")
+        .textContent =
+            data.surgical_history ||
+            "Not Added";
 
-"Code: " +
 
-(error.code || "N/A") +
+    document
+        .getElementById("chronicConditions")
+        .textContent =
+            data.chronic_conditions ||
+            "Not Added";
 
-"</small>";
 
+    document
+        .getElementById("disabilities")
+        .textContent =
+            data.disabilities ||
+            "Not Added";
 
-return;
 
+    document
+        .getElementById("familyMedicalHistory")
+        .textContent =
+            data.family_medical_history ||
+            "Not Added";
 
-}
 
+    document
+        .getElementById("emergencyContact")
+        .textContent =
+            data.emergency_contact ||
+            "Not Added";
 
-currentPatient = data;
 
+    document
+        .getElementById("notes")
+        .textContent =
+            data.note ||
+            "Not Added";
 
-document
 
-.getElementById("loading")
+    document
+        .getElementById("doctorName")
+        .textContent =
+            data.doctor_name ||
+            "Not Added";
 
-.style.display =
 
-"none";
+    document
+        .getElementById("doctorContact")
+        .textContent =
+            data.doctor_contact ||
+            "Not Added";
 
 
-document
-
-.getElementById("healthCard")
-
-.style.display =
-
-"block";
-
-
-
-document
-
-.getElementById("fullName")
-
-.textContent =
-
-data.full_name ||
-
-"Not Added";
-
-
-document
-
-.getElementById("patientId")
-
-.textContent =
-
-data.patient_id ||
-
-"Not Added";
-
-
-document
-
-.getElementById("name")
-
-.textContent =
-
-data.full_name ||
-
-"Not Added";
-
-
-document
-
-.getElementById("dateOfBirth")
-
-.textContent =
-
-data.date_of_birth ||
-
-"Not Added";
-
-
-document
-
-.getElementById("gender")
-
-.textContent =
-
-data.gender ||
-
-"Not Added";
-
-
-document
-
-.getElementById("bloodGroup")
-
-.textContent =
-
-data.blood_group ||
-
-"Not Added";
-
-
-document
-
-.getElementById("phone")
-
-.textContent =
-
-data.phone ||
-
-"Not Added";
-
-
-document
-
-.getElementById("address")
-
-.textContent =
-
-data.address ||
-
-"Not Added";
-
-
-document
-
-.getElementById("medicalHistory")
-
-.textContent =
-
-data.medical_history ||
-
-"Not Added";
-
-
-document
-
-.getElementById("currentMedications")
-
-.textContent =
-
-data.current_medications ||
-
-"Not Added";
-
-
-document
-
-.getElementById("allergies")
-
-.textContent =
-
-data.allergies ||
-
-"Not Added";
-
-
-document
-
-.getElementById("surgicalHistory")
-
-.textContent =
-
-data.surgical_history ||
-
-"Not Added";
-
-
-document
-
-.getElementById("chronicConditions")
-
-.textContent =
-
-data.chronic_conditions ||
-
-"Not Added";
-
-
-document
-
-.getElementById("disabilities")
-
-.textContent =
-
-data.disabilities ||
-
-"Not Added";
-
-
-document
-
-.getElementById("familyMedicalHistory")
-
-.textContent =
-
-data.family_medical_history ||
-
-"Not Added";
-
-
-document
-
-.getElementById("emergencyContact")
-
-.textContent =
-
-data.emergency_contact ||
-
-"Not Added";
-
-
-document
-
-.getElementById("notes")
-
-.textContent =
-
-data.note ||
-
-"Not Added";
-
-
-document
-
-.getElementById("doctorName")
-
-.textContent =
-
-data.doctor_name ||
-
-"Not Added";
-
-
-document
-
-.getElementById("doctorContact")
-
-.textContent =
-
-data.doctor_contact ||
-
-"Not Added";
-
-
-
-await loadQrRequestStatus();
-
+    // QR Request Status Load
+    await loadQrRequestStatus();
 
 }
 
 
 
+// ==========================================
 // LOAD QR REQUEST STATUS
+// ==========================================
 
 async function loadQrRequestStatus() {
 
+    if (
+        !currentSession ||
+        !currentPatient
+    ) {
 
-if (
+        return;
 
-!currentSession ||
+    }
 
-!currentPatient
 
-) {
+    const {
+        data,
+        error
+    } = await supabaseClient
 
-return;
+        .from("qr_change_requests")
+
+        .select(
+            "status, admin_note, created_at"
+        )
+
+        .eq(
+            "user_id",
+            currentSession.user.id
+        )
+
+        .order(
+            "created_at",
+            {
+                ascending: false
+            }
+        )
+
+        .limit(1);
+
+
+    if (error) {
+
+        console.error(
+            "QR Status Error:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+    const request =
+        data[0];
+
+
+    const statusBox =
+        document
+            .getElementById(
+                "qrRequestStatus"
+            );
+
+
+    const statusText =
+        document
+            .getElementById(
+                "qrStatusText"
+            );
+
+
+    const requestDate =
+        document
+            .getElementById(
+                "qrRequestDate"
+            );
+
+
+    const adminNote =
+        document
+            .getElementById(
+                "qrAdminNote"
+            );
+
+
+    const adminNoteText =
+        document
+            .getElementById(
+                "qrAdminNoteText"
+            );
+
+
+    // Status Box Show
+    statusBox.style.display =
+        "block";
+
+
+    // Request Date
+    requestDate.textContent =
+        new Date(
+            request.created_at
+        ).toLocaleString();
+
+
+    statusText.className = "";
+
+
+    // Pending
+    if (
+        request.status ===
+        "pending"
+    ) {
+
+        statusText.textContent =
+            "🟡 Pending – Admin verification in progress";
+
+        statusText.className =
+            "status-pending";
+
+    }
+
+
+    // Approved
+    else if (
+        request.status ===
+        "approved"
+    ) {
+
+        statusText.textContent =
+            "🟢 Approved";
+
+        statusText.className =
+            "status-approved";
+
+    }
+
+
+    // Rejected
+    else if (
+        request.status ===
+        "rejected"
+    ) {
+
+        statusText.textContent =
+            "🔴 Rejected";
+
+        statusText.className =
+            "status-rejected";
+
+    }
+
+
+    // Other Status
+    else {
+
+        statusText.textContent =
+            request.status;
+
+    }
+
+
+    // Admin Note
+    if (
+        request.admin_note
+    ) {
+
+        adminNote.style.display =
+            "block";
+
+
+        adminNoteText.textContent =
+            request.admin_note;
+
+    }
 
 }
 
 
 
-const {
-
-data,
-
-error
-
-} = await supabaseClient
-
-
-.from("qr_change_requests")
-
-
-.select(
-
-"status, admin_note, created_at"
-
-)
-
-
-.eq(
-
-"user_id",
-
-currentSession.user.id
-
-)
-
-
-.order(
-
-"created_at",
-
-{
-
-ascending: false
-
-}
-
-)
-
-
-.limit(1);
-
-
-
-if (error) {
-
-
-console.error(
-
-"QR Status Error:",
-
-error
-
-);
-
-
-return;
-
-}
-
-
-
-if (
-
-!data ||
-
-data.length === 0
-
-) {
-
-
-return;
-
-}
-
-
-
-const request =
-
-data[0];
-
-
-const statusBox =
+// ==========================================
+// SHOW / HIDE QR REQUEST FORM
+// ==========================================
 
 document
+    .getElementById(
+        "showQrRequestButton"
+    )
+    .addEventListener(
 
-.getElementById(
+        "click",
 
-"qrRequestStatus"
+        function() {
 
-);
 
+            const form =
+                document
+                    .getElementById(
+                        "qrRequestForm"
+                    );
 
-const statusText =
 
-document
+            if (
+                form.style.display ===
+                "block"
+            ) {
 
-.getElementById(
+                form.style.display =
+                    "none";
 
-"qrStatusText"
+            }
 
-);
+            else {
 
+                form.style.display =
+                    "block";
 
-const requestDate =
+            }
 
-document
+        }
 
-.getElementById(
+    );
 
-"qrRequestDate"
 
-);
 
-
-const adminNote =
-
-document
-
-.getElementById(
-
-"qrAdminNote"
-
-);
-
-
-const adminNoteText =
-
-document
-
-.getElementById(
-
-"qrAdminNoteText"
-
-);
-
-
-
-statusBox.style.display =
-
-"block";
-
-
-
-const formattedDate =
-
-new Date(
-
-request.created_at
-
-)
-
-.toLocaleString();
-
-
-
-requestDate.textContent =
-
-formattedDate;
-
-
-
-statusText.className = "";
-
-
-
-if (
-
-request.status ===
-
-"pending"
-
-) {
-
-
-statusText.textContent =
-
-"🟡 Pending – Admin verification in progress";
-
-
-statusText.className =
-
-"status-pending";
-
-
-}
-
-else if (
-
-request.status ===
-
-"approved"
-
-) {
-
-
-statusText.textContent =
-
-"🟢 Approved";
-
-
-statusText.className =
-
-"status-approved";
-
-
-}
-
-else if (
-
-request.status ===
-
-"rejected"
-
-) {
-
-
-statusText.textContent =
-
-"🔴 Rejected";
-
-
-statusText.className =
-
-"status-rejected";
-
-
-}
-
-else {
-
-
-statusText.textContent =
-
-request.status;
-
-
-}
-
-
-
-if (
-
-request.admin_note
-
-) {
-
-
-adminNote.style.display =
-
-"block";
-
-
-adminNoteText.textContent =
-
-request.admin_note;
-
-
-}
-
-
-}
-
-
-
-// SHOW QR REQUEST FORM
-
-document
-
-.getElementById(
-
-"showQrRequestButton"
-
-)
-
-.addEventListener(
-
-"click",
-
-function() {
-
-
-const form =
-
-document
-
-.getElementById(
-
-"qrRequestForm"
-
-);
-
-
-
-if (
-
-form.style.display ===
-
-"block"
-
-) {
-
-
-form.style.display =
-
-"none";
-
-
-}
-
-else {
-
-
-form.style.display =
-
-"block";
-
-
-}
-
-}
-
-);
-
-
-
+// ==========================================
 // SUBMIT QR CHANGE REQUEST
+// ==========================================
 
 document
+    .getElementById(
+        "qrRequestForm"
+    )
+    .addEventListener(
 
-.getElementById(
+        "submit",
 
-"qrRequestForm"
+        async function(event) {
 
-)
 
-.addEventListener(
+            event.preventDefault();
 
-"submit",
 
-async function(event) {
+            const reason =
+                document
+                    .getElementById(
+                        "qrReason"
+                    )
+                    .value;
 
 
-event.preventDefault();
+            const details =
+                document
+                    .getElementById(
+                        "qrDetails"
+                    )
+                    .value
+                    .trim();
 
 
+            const submitButton =
+                document
+                    .getElementById(
+                        "submitQrRequestButton"
+                    );
 
-const reason =
 
-document
+            const requestMessage =
+                document
+                    .getElementById(
+                        "requestMessage"
+                    );
 
-.getElementById(
 
-"qrReason"
+            // Check Login
+            if (
+                !currentSession ||
+                !currentPatient
+            ) {
 
-)
+                requestMessage.className =
+                    "request-message request-error";
 
-.value;
 
+                requestMessage.textContent =
+                    "Unable to submit request. Please login again.";
 
 
-const details =
+                return;
 
-document
+            }
 
-.getElementById(
 
-"qrDetails"
+            // Disable Button
+            submitButton.disabled =
+                true;
 
-)
 
-.value
+            submitButton.textContent =
+                "Submitting...";
 
-.trim();
 
+            requestMessage.className =
+                "request-message";
 
 
-const submitButton =
+            requestMessage.textContent =
+                "";
 
-document
 
-.getElementById(
+            try {
 
-"submitQrRequestButton"
 
-);
+                const {
+                    error
+                } = await supabaseClient
 
+                    .from(
+                        "qr_change_requests"
+                    )
 
+                    .insert({
 
-const requestMessage =
+                        patient_id:
+                            currentPatient.patient_id,
 
-document
+                        user_id:
+                            currentSession.user.id,
 
-.getElementById(
+                        reason:
+                            reason,
 
-"requestMessage"
+                        details:
+                            details ||
+                            null
 
-);
+                    });
 
 
+                if (error) {
 
-if (
+                    throw error;
 
-!currentSession ||
+                }
 
-!currentPatient
 
-) {
+                // Success Message
+                requestMessage.className =
+                    "request-message request-success";
 
 
-requestMessage.className =
+                requestMessage.textContent =
+                    "Your QR Change Request has been submitted successfully. It is now pending Admin verification.";
 
-"request-message request-error";
 
+                // Form Hide
+                document
+                    .getElementById(
+                        "qrRequestForm"
+                    )
+                    .style.display =
+                        "none";
 
-requestMessage.textContent =
 
-"Unable to submit request. Please login again.";
+                // Button Reset
+                submitButton.disabled =
+                    false;
 
 
-return;
+                submitButton.textContent =
+                    "Submit QR Change Request";
 
 
-}
+                // Status Reload
+                await loadQrRequestStatus();
 
 
+            }
 
-submitButton.disabled =
 
-true;
+            catch (error) {
 
 
+                console.error(
+                    "QR Request Error:",
+                    error
+                );
 
-submitButton.textContent =
 
-"Submitting...";
+                requestMessage.className =
+                    "request-message request-error";
 
 
+                // Duplicate Request
+                if (
+                    error.code ===
+                    "23505"
+                ) {
 
-requestMessage.className =
+                    requestMessage.textContent =
+                        "You already have a pending QR Change Request. Please wait for Admin verification.";
 
-"request-message";
+                }
 
 
+                else {
 
-requestMessage.textContent =
+                    requestMessage.textContent =
+                        "Unable to submit your request. Please try again.";
 
-"";
+                }
 
 
+                submitButton.disabled =
+                    false;
 
-try {
 
+                submitButton.textContent =
+                    "Submit QR Change Request";
 
-const {
+            }
 
-error
+        }
 
-} = await supabaseClient
+    );
 
 
-.from(
 
-"qr_change_requests"
-
-)
-
-
-.insert({
-
-
-patient_id:
-
-currentPatient.patient_id,
-
-
-user_id:
-
-currentSession.user.id,
-
-
-reason:
-
-reason,
-
-
-details:
-
-details ||
-
-null
-
-
-});
-
-
-
-if (error) {
-
-
-throw error;
-
-
-}
-
-
-
-requestMessage.className =
-
-"request-message request-success";
-
-
-
-requestMessage.textContent =
-
-"Your QR Change Request has been submitted successfully. It is now pending Admin verification.";
-
-
-
-document
-
-.getElementById(
-
-"qrRequestForm"
-
-)
-
-.style.display =
-
-"none";
-
-
-
-submitButton.disabled =
-
-false;
-
-
-
-submitButton.textContent =
-
-"Submit QR Change Request";
-
-
-
-await loadQrRequestStatus();
-
-
-
-}
-
-catch (error) {
-
-
-console.error(
-
-"QR Request Error:",
-
-error
-
-);
-
-
-
-requestMessage.className =
-
-"request-message request-error";
-
-
-
-if (
-
-error.code ===
-
-"23505"
-
-) {
-
-
-requestMessage.textContent =
-
-"You already have a pending QR Change Request. Please wait for Admin verification.";
-
-
-}
-
-else {
-
-
-requestMessage.textContent =
-
-"Unable to submit your request. Please try again.";
-
-
-}
-
-
-
-submitButton.disabled =
-
-false;
-
-
-
-submitButton.textContent =
-
-"Submit QR Change Request";
-
-
-}
-
-}
-
-);
-
-
-
+// ==========================================
 // LOGOUT
+// ==========================================
 
 document
+    .getElementById(
+        "logoutButton"
+    )
+    .addEventListener(
 
-.getElementById(
+        "click",
 
-"logoutButton"
-
-)
-
-.addEventListener(
-
-"click",
-
-async function() {
+        async function() {
 
 
-await supabaseClient
-
-.auth
-
-.signOut();
+            await supabaseClient
+                .auth
+                .signOut();
 
 
+            window.location.href =
+                "login.html";
 
-window.location.href =
+        }
 
-"login.html";
-
-
-}
-
-);
+    );
 
 
 
-// START
+// ==========================================
+// START MEDIVAULT
+// ==========================================
 
 loadHealthCard();
 
 
-</script></body></html>
+</script>
+
+</body>
+
+    </html>
