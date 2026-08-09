@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>MediVault | Patient Registration</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: #f4f7f9;
+
+    color: #222;
+
+}
+
+header {
+
+    background: #0b7285;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 25px 15px;
+
+}
+
+header h1 {
+
+    margin: 0;
+
+    font-size: 30px;
+
+}
+
+header p {
+
+    margin: 8px 0 0;
+
+}
+
+.container {
+
+    max-width: 700px;
+
+    margin: 30px auto;
+
+    padding: 15px;
+
+}
+
+.registration-card {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0, 0, 0, 0.1);
+
+}
+
+.registration-card h2 {
+
+    text-align: center;
+
+    color: #0b7285;
+
+    margin-top: 0;
+
+}
+
+.subtitle {
+
+    text-align: center;
+
+    color: #666;
+
+    margin-bottom: 30px;
+
+}
+
+.section-title {
+
+    color: #0b7285;
+
+    border-bottom:
+        2px solid #0b7285;
+
+    padding-bottom: 8px;
+
+    margin-top: 30px;
+
+}
+
+.form-group {
+
+    margin-top: 18px;
+
+}
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-weight: bold;
+
+    color: #333;
+
+}
+
+.form-group input,
+
+.form-group select {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    font-family: Arial, sans-serif;
+
+}
+
+.form-group input:focus,
+
+.form-group select:focus {
+
+    outline: none;
+
+    border-color: #0b7285;
+
+}
+
+.help-text {
+
+    margin-top: 6px;
+
+    font-size: 13px;
+
+    color: #777;
+
+}
+
+.identity-note {
+
+    margin-top: 15px;
+
+    padding: 15px;
+
+    background: #f1f8fa;
+
+    border-left:
+        4px solid #0b7285;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+.password-note {
+
+    margin-top: 15px;
+
+    padding: 15px;
+
+    background: #fff8e1;
+
+    border-left:
+        4px solid #f0ad00;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+.register-button {
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 30px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #198754;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+.register-button:hover {
+
+    background: #146c43;
+
+}
+
+.register-button:disabled {
+
+    background: #999;
+
+    cursor: not-allowed;
+
+}
+
+.message {
+
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 14px;
+
+    border-radius: 7px;
+
+    text-align: center;
+
+    line-height: 1.6;
+
+}
+
+.message-success {
+
+    display: block;
+
+    background: #e8f7ee;
+
+    color: #146c43;
+
+}
+
+.message-error {
+
+    display: block;
+
+    background: #fff3f3;
+
+    color: #c00000;
+
+}
+
+.login-link {
+
+    text-align: center;
+
+    margin-top: 25px;
+
+}
+
+.login-link a {
+
+    color: #0b7285;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+}
+
+.login-link a:hover {
+
+    text-decoration: underline;
+
+}
+
+footer {
+
+    text-align: center;
+
+    padding: 20px;
+
+    margin-top: 30px;
+
+    background: #e9ecef;
+
+    color: #555;
+
+}
+
+@media (max-width: 600px) {
+
+    .registration-card {
+
+        padding: 20px;
+
+    }
+
+    header h1 {
+
+        font-size: 25px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>💙 MediVault</h1>
+
+<p>Patient Registration</p>
+
+</header>
+
+<div class="container">
+
+<div class="registration-card">
+
+<h2>Create Your MediVault Account</h2>
+
+<p class="subtitle">
+
+Register for your Electronic Health Card
+
+</p>
+
+<!-- PERSONAL INFORMATION -->
+
+<h3 class="section-title">
+
+👤 Personal Information
+
+</h3>
+
+<div class="form-group">
+
+<label for="fullName">
+
+Full Name
+
+</label>
+
+<input
+    type="text"
+    id="fullName"
+    placeholder="Enter your full name"
+    required
+>
+
+</div>
+
+<div class="form-group">
+
+<label for="dateOfBirth">
+
+Date of Birth
+
+</label>
+
+<input
+    type="date"
+    id="dateOfBirth"
+    required
+>
+
+</div>
+
+<div class="form-group">
+
+<label for="gender">
+
+Gender
+
+</label>
+
+<select id="gender" required>
+
+<option value="">
+
+Select Gender
+
+</option>
+
+<option value="Male">
+
+Male
+
+</option>
+
+<option value="Female">
+
+Female
+
+</option>
+
+<option value="Other">
+
+Other
+
+</option>
+
+</select>
+
+</div>
+
+<!-- CONTACT INFORMATION -->
+
+<h3 class="section-title">
+
+📱 Contact Information
+
+</h3>
+
+<div class="form-group">
+
+<label for="mobile">
+
+Mobile Number
+
+</label>
+
+<input
+    type="tel"
+    id="mobile"
+    placeholder="01XXXXXXXXX"
+    required
+>
+
+<div class="help-text">
+
+Used for account recovery in the future.
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label for="email">
+
+Email Address
+
+</label>
+
+<input
+    type="email"
+    id="email"
+    placeholder="example@email.com"
+    required
+>
+
+<div class="help-text">
+
+Used for account verification and password recovery.
+
+</div>
+
+</div>
+
+<!-- IDENTITY INFORMATION -->
+
+<h3 class="section-title">
+
+🪪 Identity Information
+
+</h3>
+
+<div class="identity-note">
+
+Your NID or Birth Registration Number will be kept
+private and will not be displayed on your Electronic
+Health Card.
+
+</div>
+
+<div class="form-group">
+
+<label for="identityType">
+
+Identity Type
+
+</label>
+
+<select id="identityType" required>
+
+<option value="">
+
+Select Identity Type
+
+</option>
+
+<option value="nid">
+
+NID
+
+</option>
+
+<option value="birth_registration">
+
+Birth Registration
+
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label for="identityNumber">
+
+NID / Birth Registration Number
+
+</label>
+
+<input
+    type="text"
+    id="identityNumber"
+    placeholder="Enter your number"
+    required
+>
+
+</div>
+
+<!-- ACCOUNT SECURITY -->
+
+<h3 class="section-title">
+
+🔐 Account Security
+
+</h3>
+
+<div class="form-group">
+
+<label for="password">
+
+Password
+
+</label>
+
+<input
+    type="password"
+    id="password"
+    placeholder="Create a password"
+    required
+>
+
+</div>
+
+<div class="form-group">
+
+<label for="confirmPassword">
+
+Confirm Password
+
+</label>
+
+<input
+    type="password"
+    id="confirmPassword"
+    placeholder="Enter password again"
+    required
+>
+
+</div>
+
+<div class="password-note">
+
+<strong>Password requirement:</strong><br>
+
+Use at least 8 characters. A combination of
+letters, numbers and symbols is recommended.
+
+</div>
+
+<!-- REGISTER BUTTON -->
+
+<button
+    type="button"
+    id="registerButton"
+    class="register-button"
+>
+
+Create MediVault Account
+
+</button>
+
+<div
+    id="message"
+    class="message"
+></div>
+
+<div class="login-link">
+
+Already have an account?
+
+<a href="login.html">
+
+Login here
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 MediVault |
+Electronic Health Card System
+
+</footer>
+
+<!-- SUPABASE LIBRARY -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+    "https://wzstqwuxinbiyommbljl.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_4pyUeXGZuNoSrNgvdMqeeg_lfeq_VoS";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+const registerButton =
+    document.getElementById(
+        "registerButton"
+    );
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.className =
+        "message " + type;
+
+    message.innerHTML =
+        text;
+
+}
+
+
+function clearMessage() {
+
+    message.className =
+        "message";
+
+    message.innerHTML =
+        "";
+
+}
+
+
+registerButton.addEventListener(
+    "click",
+    async function () {
+
+        clearMessage();
+
+        const fullName =
+            document
+                .getElementById("fullName")
+                .value
+                .trim();
+
+        const dateOfBirth =
+            document
+                .getElementById("dateOfBirth")
+                .value;
+
+        const gender =
+            document
+                .getElementById("gender")
+                .value;
+
+        const mobile =
+            document
+                .getElementById("mobile")
+                .value
+                .trim();
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+        const identityType =
+            document
+                .getElementById("identityType")
+                .value;
+
+        const identityNumber =
+            document
+                .getElementById(
+                    "identityNumber"
+                )
+                .value
+                .trim();
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+        const confirmPassword =
+            document
+                .getElementById(
+                    "confirmPassword"
+                )
+                .value;
+
+
+        /*
+         * BASIC VALIDATION
+         */
+
+
+        if (
+            !fullName ||
+            !dateOfBirth ||
+            !gender ||
+            !mobile ||
+            !email ||
+            !identityType ||
+            !identityNumber ||
+            !password ||
+            !confirmPassword
+        ) {
+
+            showMessage(
+                "Please complete all required fields.",
+                "message-error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            password.length < 8
+        ) {
+
+            showMessage(
+                "Password must contain at least 8 characters.",
+                "message-error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            password !==
+            confirmPassword
+        ) {
+
+            showMessage(
+                "Passwords do not match.",
+                "message-error"
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * DISABLE BUTTON
+         */
+
+        registerButton.disabled =
+            true;
+
+        registerButton.textContent =
+            "Creating Account...";
+
+
+        try {
+
+            /*
+             * CREATE SUPABASE AUTH USER
+             */
+
+            const {
+                data: authData,
+                error: authError
+            } = await supabaseClient
+                .auth
+                .signUp({
+
+                    email: email,
+
+                    password: password
+
+                });
+
+
+            if (authError) {
+
+                throw authError;
+
+            }
+
+
+            if (
+                !authData.user
+            ) {
+
+                throw new Error(
+                    "Unable to create account."
+                );
+
+            }
+
+
+            const userId =
+                authData.user.id;
+
+
+            /*
+             * SAVE PATIENT INFORMATION
+             */
+
+            const {
+                error:
+                    patientError
+            } = await supabaseClient
+
+                .from("patients")
+
+                .insert({
+
+                    user_id:
+                        userId,
+
+                    email:
+                        email,
+
+                    mobile:
+                        mobile,
+
+                    full_name:
+                        fullName,
+
+                    date_of_birth:
+                        dateOfBirth,
+
+                    gender:
+                        gender,
+
+                    national_id:
+                        identityType === "nid"
+                            ? identityNumber
+                            : null,
+
+                    birth_registration:
+                        identityType === "birth_registration"
+                            ? identityNumber
+                            : null,
+
+                    registration_status:
+                        "pending"
+
+                });
+
+
+            if (
+                patientError
+            ) {
+
+                throw patientError;
+
+            }
+
+
+            /*
+             * SUCCESS
+             */
+
+            showMessage(
+
+                "Registration submitted successfully!<br><br>" +
+
+                "Your account is now <strong>pending Admin approval</strong>.<br>" +
+
+                "You will receive your Patient ID after approval.",
+
+                "message-success"
+
+            );
+
+
+            /*
+             * CLEAR FORM
+             */
+
+            document
+                .getElementById("fullName")
+                .value = "";
+
+            document
+                .getElementById("dateOfBirth")
+                .value = "";
+
+            document
+                .getElementById("gender")
+                .value = "";
+
+            document
+                .getElementById("mobile")
+                .value = "";
+
+            document
+                .getElementById("email")
+                .value = "";
+
+            document
+                .getElementById("identityType")
+                .value = "";
+
+            document
+                .getElementById(
+                    "identityNumber"
+                )
+                .value = "";
+
+            document
+                .getElementById("password")
+                .value = "";
+
+            document
+                .getElementById(
+                    "confirmPassword"
+                )
+                .value = "";
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Registration Error:",
+                error
+            );
+
+
+            showMessage(
+
+                "Registration failed.<br><br>" +
+
+                "<small>" +
+                error.message +
+                "</small>",
+
+                "message-error"
+
+            );
+
+        }
+
+
+        /*
+         * ENABLE BUTTON AGAIN
+         */
+
+        registerButton.disabled =
+            false;
+
+        registerButton.textContent =
+            "Create MediVault Account";
+
+    }
+
+);
+
+  </script>
+
+  </body>
+
+</html>
