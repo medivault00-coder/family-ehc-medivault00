@@ -93,6 +93,36 @@
             cursor: not-allowed;
         }
 
+        .register-section {
+            margin-top: 22px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .register-text {
+            margin: 0 0 10px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .register-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border-radius: 7px;
+            background: white;
+            color: #0b7285;
+            border: 2px solid #0b7285;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .register-button:hover {
+            background: #f1f8fa;
+        }
+
         .back-link {
             display: block;
             text-align: center;
@@ -137,6 +167,12 @@
             margin-top: 20px;
             color: #777;
             font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .login-card {
+                padding: 25px;
+            }
         }
     </style>
 </head>
@@ -196,15 +232,34 @@
 
             </button>
 
-        </form>
+    </form>
+
+                <div class="register-section">
+
+            <p class="register-text">
+                Don't have a MediVault account?
+            </p>
+
+            <a
+                href="register.html"
+                class="register-button"
+            >
+                📝 Create an Account
+            </a>
+
+        </div>
 
         <div class="security-note">
-            🔐 Your health information is protected with secure authentication.
+
+            🔐 Your health information is protected
+            with secure authentication.
+
         </div>
 
         <a
             href="https://medivault00-coder.github.io/family-ehc-medivault00/"
-            class="back-link">
+            class="back-link"
+        >
 
             ← Back to MediVault
 
@@ -213,7 +268,9 @@
     </div>
 
     <footer>
+
         © 2026 MediVault
+
     </footer>
 
 </div>
@@ -222,7 +279,6 @@
 <!-- Supabase JavaScript Library -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <script>
 
@@ -233,7 +289,6 @@
 
     const SUPABASE_KEY =
         "sb_publishable_4pyUeXGZuNoSrNgvdMqeeg_lfeq_VoS";
-
 
     const supabaseClient =
         window.supabase.createClient(
@@ -274,27 +329,36 @@
 
 
             message.className = "message";
+
             message.textContent = "";
 
             loginButton.disabled = true;
-            loginButton.textContent = "Logging in...";
+
+            loginButton.textContent =
+                "Logging in...";
 
 
             try {
 
                 // Get Auth Email from Patient ID
 
-                const { data: authEmail, error: emailError } =
+                const {
+                    data: authEmail,
+                    error: emailError
+                } =
                     await supabaseClient.rpc(
                         "get_auth_email_by_patient_id",
                         {
-                            p_patient_id: patientId
+                            p_patient_id:
+                                patientId
                         }
                     );
 
 
                 if (emailError) {
+
                     throw emailError;
+
                 }
 
 
@@ -309,18 +373,27 @@
 
                 // Login with Supabase Auth
 
-                const { data, error } =
-                    await supabaseClient.auth.signInWithPassword({
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient
+                        .auth
+                        .signInWithPassword({
 
-                        email: authEmail,
+                            email:
+                                authEmail,
 
-                        password: password
+                            password:
+                                password
 
-                    });
+                        });
 
 
                 if (error) {
+
                     throw error;
+
                 }
 
 
@@ -335,12 +408,15 @@
 
                 // Open EHC
 
-                setTimeout(function() {
+                setTimeout(
+                    function() {
 
-                    window.location.href =
-                        "member1.html";
+                        window.location.href =
+                            "member1.html";
 
-                }, 800);
+                    },
+                    800
+                );
 
 
             } catch (error) {
@@ -351,9 +427,14 @@
                     "message error";
 
                 message.textContent =
-    "Login failed: " + (error.message || "Unknown error");
-                
-                loginButton.disabled = false;
+                    "Login failed: " +
+                    (
+                        error.message ||
+                        "Unknown error"
+                    );
+
+                loginButton.disabled =
+                    false;
 
                 loginButton.textContent =
                     "Login";
@@ -361,10 +442,9 @@
             }
 
         }
-
     );
 
 </script>
 
-</body>
-    </html>
+    </body>
+</html>
