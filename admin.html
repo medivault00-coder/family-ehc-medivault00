@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MediVault | Admin Portal</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7f9;
+            color: #222;
+        }
+
+        header {
+            background: #0b7285;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 15px;
+        }
+
+        .admin-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .page-title {
+            color: #0b7285;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .admin-badge {
+            text-align: center;
+            margin: 15px 0 25px;
+        }
+
+        .admin-badge span {
+            display: inline-block;
+            background: #e8f7ee;
+            color: #146c43;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            color: #0b7285;
+            border-bottom: 2px solid #0b7285;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #0b7285;
+            font-size: 18px;
+        }
+
+        .error {
+            display: none;
+            padding: 15px;
+            background: #fff3f3;
+            color: #c00000;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .success {
+            display: none;
+            padding: 15px;
+            background: #e8f7ee;
+            color: #146c43;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logout-button {
+            display: block;
+            margin: 30px auto 0;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 7px;
+            background: #d00000;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .logout-button:hover {
+            background: #a80000;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background: #e9ecef;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+
+            .admin-card {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>💙 MediVault</h1>
+
+    <p>Administrator Portal</p>
+
+</header>
+
+
+<div class="container">
+
+    <div class="admin-card">
+
+        <h2 class="page-title">
+            🔐 MediVault Admin Portal
+        </h2>
+
+        <div class="admin-badge">
+
+            <span>
+                Administrator Access
+            </span>
+
+        </div>
+
+
+        <div
+            id="loading"
+            class="loading"
+        >
+
+            Verifying administrator access...
+
+        </div>
+
+
+        <div
+            id="error"
+            class="error"
+        ></div>
+
+
+        <div
+            id="success"
+            class="success"
+        ></div>
+
+
+        <div
+            id="adminContent"
+            style="display:none;"
+        >
+
+            <h3 class="section-title">
+                👥 Patient Registration Management
+            </h3>
+
+
+            <div id="pendingPatients">
+
+                <div class="loading">
+                    Loading pending registrations...
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button"
+            >
+
+                🔒 Admin Logout
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 MediVault |
+    Administrator Portal
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+    "https://wzstqwuxinbiyommbljl.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_4pyUeXGZuNoSrNgvdMqeeg_lfeq_VoS";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+let currentSession = null;
+
+
+/* ================================
+   ADMIN ACCESS VERIFICATION
+================================ */
+
+async function verifyAdminAccess() {
+
+    const loading =
+        document.getElementById("loading");
+
+    const errorBox =
+        document.getElementById("error");
+
+    const adminContent =
+        document.getElementById("adminContent");
+
+
+    const {
+        data: {
+            session
+        }
+    } = await supabaseClient
+        .auth
+        .getSession();
+
+
+    if (!session) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    currentSession = session;
+
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabaseClient.rpc(
+            "is_admin"
+        );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        if (data !== true) {
+
+            loading.style.display =
+                "none";
+
+            errorBox.style.display =
+                "block";
+
+            errorBox.textContent =
+                "Access denied. Administrator privileges are required.";
+
+            return;
+
+        }
+
+
+        loading.style.display =
+            "none";
+
+        adminContent.style.display =
+            "block";
+
+
+        await loadPendingPatients();
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Admin verification error:",
+            error
+        );
+
+
+        loading.style.display =
+            "none";
+
+        errorBox.style.display =
+            "block";
+
+        errorBox.textContent =
+            "Unable to verify administrator access.";
+
+    }
+
+}
+
+
+/* ================================
+   START ADMIN PORTAL
+================================ */
+
+verifyAdminAccess();
+
+  /* ================================
+   LOAD PENDING PATIENTS
+================================ */
+
+async function loadPendingPatients() {
+
+    const container =
+        document.getElementById(
+            "pendingPatients"
+        );
+
+    container.innerHTML =
+        '<div class="loading">Loading pending registrations...</div>';
+
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+
+        .from("patients")
+
+        .select(`
+            id,
+            full_name,
+            date_of_birth,
+            gender,
+            email,
+            mobile,
+            national_id,
+            birth_registration,
+            registration_status,
+            created_at
+        `)
+
+        .eq(
+            "registration_status",
+            "pending"
+        )
+
+        .order(
+            "created_at",
+            {
+                ascending: true
+            }
+        );
+
+
+    if (error) {
+
+        console.error(
+            "Pending patients error:",
+            error
+        );
+
+        container.innerHTML =
+            '<div class="error" style="display:block;">' +
+            'Unable to load pending registrations.<br><br>' +
+            error.message +
+            '</div>';
+
+        return;
+
+    }
+
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+        container.innerHTML =
+            '<div style="text-align:center;padding:30px;color:#666;">' +
+            '🎉 No pending patient registrations.' +
+            '</div>';
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    data.forEach(function(patient) {
+
+        const card =
+            document.createElement("div");
+
+        card.style.background =
+            "#f8fafb";
+
+        card.style.border =
+            "1px solid #ddd";
+
+        card.style.borderRadius =
+            "10px";
+
+        card.style.padding =
+            "20px";
+
+        card.style.marginBottom =
+            "20px";
+
+
+        const title =
+            document.createElement("h3");
+
+        title.textContent =
+            patient.full_name ||
+            "Unnamed Patient";
+
+        title.style.color =
+            "#0b7285";
+
+        title.style.marginTop =
+            "0";
+
+
+        card.appendChild(title);
+
+
+        const info =
+            document.createElement("div");
+
+        info.style.lineHeight =
+            "1.8";
+
+
+        info.innerHTML =
+
+            "<strong>Date of Birth:</strong> " +
+            (patient.date_of_birth || "Not provided") +
+
+            "<br>" +
+
+            "<strong>Gender:</strong> " +
+            (patient.gender || "Not provided") +
+
+            "<br>" +
+
+            "<strong>Email:</strong> " +
+            (patient.email || "Not provided") +
+
+            "<br>" +
+
+            "<strong>Mobile:</strong> " +
+            (patient.mobile || "Not provided") +
+
+            "<br>" +
+
+            "<strong>Identity:</strong> " +
+            (
+                patient.national_id
+                    ? "NID provided"
+                    : patient.birth_registration
+                        ? "Birth Registration provided"
+                        : "Not provided"
+            ) +
+
+            "<br>" +
+
+            "<strong>Registration Date:</strong> " +
+
+            new Date(
+                patient.created_at
+            ).toLocaleString();
+
+
+        card.appendChild(info);
+
+
+        const buttonArea =
+            document.createElement("div");
+
+        buttonArea.style.marginTop =
+            "20px";
+
+        buttonArea.style.display =
+            "flex";
+
+        buttonArea.style.gap =
+            "10px";
+
+
+        const viewButton =
+            document.createElement("button");
+
+        viewButton.textContent =
+            "👁 View Details";
+
+        viewButton.style.flex =
+            "1";
+
+        viewButton.style.padding =
+            "12px";
+
+        viewButton.style.border =
+            "none";
+
+        viewButton.style.borderRadius =
+            "7px";
+
+        viewButton.style.background =
+            "#0b7285";
+
+        viewButton.style.color =
+            "white";
+
+        viewButton.style.fontWeight =
+            "bold";
+
+        viewButton.style.cursor =
+            "pointer";
+
+
+        viewButton.onclick =
+            function() {
+
+                showPatientDetails(
+                    patient
+                );
+
+            };
+
+
+        buttonArea.appendChild(
+            viewButton
+        );
+
+
+        card.appendChild(
+            buttonArea
+        );
+
+
+        container.appendChild(
+            card
+        );
+
+    });
+
+  }
+
+  /* ================================
+   SHOW PATIENT DETAILS
+================================ */
+
+function showPatientDetails(patient) {
+
+    const container =
+        document.getElementById(
+            "pendingPatients"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const card =
+        document.createElement("div");
+
+
+    card.style.background =
+        "#ffffff";
+
+    card.style.border =
+        "1px solid #ddd";
+
+    card.style.borderRadius =
+        "10px";
+
+    card.style.padding =
+        "25px";
+
+
+    const title =
+        document.createElement("h3");
+
+    title.textContent =
+        "👤 Patient Registration Details";
+
+    title.style.color =
+        "#0b7285";
+
+    title.style.marginTop =
+        "0";
+
+
+    card.appendChild(title);
+
+
+    const details =
+        document.createElement("div");
+
+    details.style.lineHeight =
+        "1.9";
+
+
+    details.innerHTML =
+
+        "<strong>Full Name:</strong> " +
+        (patient.full_name || "Not provided") +
+
+        "<br>" +
+
+        "<strong>Date of Birth:</strong> " +
+        (patient.date_of_birth || "Not provided") +
+
+        "<br>" +
+
+        "<strong>Gender:</strong> " +
+        (patient.gender || "Not provided") +
+
+        "<br>" +
+
+        "<strong>Email:</strong> " +
+        (patient.email || "Not provided") +
+
+        "<br>" +
+
+        "<strong>Mobile:</strong> " +
+        (patient.mobile || "Not provided") +
+
+        "<br><br>" +
+
+        "<strong>Identity Information:</strong><br>" +
+
+        (
+            patient.national_id
+                ? "NID: " + patient.national_id
+                : patient.birth_registration
+                    ? "Birth Registration: " +
+                      patient.birth_registration
+                    : "No identity number provided"
+        );
+
+
+    card.appendChild(details);
+
+
+    /* ================================
+       APPROVE BUTTON
+    ================================= */
+
+    const approveButton =
+        document.createElement("button");
+
+
+    approveButton.textContent =
+        "✅ Approve Registration";
+
+
+    approveButton.style.width =
+        "100%";
+
+    approveButton.style.padding =
+        "13px";
+
+    approveButton.style.marginTop =
+        "25px";
+
+    approveButton.style.border =
+        "none";
+
+    approveButton.style.borderRadius =
+        "7px";
+
+    approveButton.style.background =
+        "#198754";
+
+    approveButton.style.color =
+        "white";
+
+    approveButton.style.fontSize =
+        "15px";
+
+    approveButton.style.fontWeight =
+        "bold";
+
+    approveButton.style.cursor =
+        "pointer";
+
+
+    approveButton.onclick =
+        async function() {
+
+            await approvePatient(
+                patient.id,
+                approveButton
+            );
+
+        };
+
+
+    card.appendChild(
+        approveButton
+    );
+
+
+    /* ================================
+       REJECT BUTTON
+    ================================= */
+
+    const rejectButton =
+        document.createElement("button");
+
+
+    rejectButton.textContent =
+        "❌ Reject Registration";
+
+
+    rejectButton.style.width =
+        "100%";
+
+    rejectButton.style.padding =
+        "13px";
+
+    rejectButton.style.marginTop =
+        "10px";
+
+    rejectButton.style.border =
+        "none";
+
+    rejectButton.style.borderRadius =
+        "7px";
+
+    rejectButton.style.background =
+        "#d00000";
+
+    rejectButton.style.color =
+        "white";
+
+    rejectButton.style.fontSize =
+        "15px";
+
+    rejectButton.style.fontWeight =
+        "bold";
+
+    rejectButton.style.cursor =
+        "pointer";
+
+
+    rejectButton.onclick =
+        async function() {
+
+            const reason =
+                prompt(
+                    "Please enter the reason for rejection:"
+                );
+
+
+            if (
+                !reason ||
+                !reason.trim()
+            ) {
+
+                return;
+
+            }
+
+
+            await rejectPatient(
+                patient.id,
+                reason.trim(),
+                rejectButton
+            );
+
+        };
+
+
+    card.appendChild(
+        rejectButton
+    );
+
+
+    /* ================================
+       BACK BUTTON
+    ================================= */
+
+    const backButton =
+        document.createElement("button");
+
+
+    backButton.textContent =
+        "← Back to Pending Registrations";
+
+
+    backButton.style.width =
+        "100%";
+
+    backButton.style.padding =
+        "12px";
+
+    backButton.style.marginTop =
+        "20px";
+
+    backButton.style.border =
+        "1px solid #0b7285";
+
+    backButton.style.borderRadius =
+        "7px";
+
+    backButton.style.background =
+        "white";
+
+    backButton.style.color =
+        "#0b7285";
+
+    backButton.style.fontSize =
+        "15px";
+
+    backButton.style.fontWeight =
+        "bold";
+
+    backButton.style.cursor =
+        "pointer";
+
+
+    backButton.onclick =
+        function() {
+
+            loadPendingPatients();
+
+        };
+
+
+    card.appendChild(
+        backButton
+    );
+
+
+    container.appendChild(
+        card
+    );
+
+  }
+  /* ================================
+   APPROVE PATIENT
+================================ */
+
+async function approvePatient(
+    patientId,
+    button
+) {
+
+    button.disabled = true;
+
+    button.textContent =
+        "Approving...";
+
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabaseClient.rpc(
+            "approve_patient",
+            {
+                p_patient_uuid:
+                    patientId
+            }
+        );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        const success =
+            document.getElementById(
+                "success"
+            );
+
+
+        success.style.display =
+            "block";
+
+
+        success.textContent =
+            "✅ Registration approved successfully. Patient ID: " +
+            data;
+
+
+        await loadPendingPatients();
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Approve error:",
+            error
+        );
+
+
+        const errorBox =
+            document.getElementById(
+                "error"
+            );
+
+
+        errorBox.style.display =
+            "block";
+
+
+        errorBox.textContent =
+            "Unable to approve registration: " +
+            error.message;
+
+
+        button.disabled = false;
+
+        button.textContent =
+            "✅ Approve Registration";
+
+    }
+
+}
+
+
+/* ================================
+   REJECT PATIENT
+================================ */
+
+async function rejectPatient(
+    patientId,
+    reason,
+    button
+) {
+
+    button.disabled = true;
+
+    button.textContent =
+        "Rejecting...";
+
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabaseClient.rpc(
+            "reject_patient",
+            {
+                p_patient_uuid:
+                    patientId,
+
+                p_reason:
+                    reason
+            }
+        );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        const success =
+            document.getElementById(
+                "success"
+            );
+
+
+        success.style.display =
+            "block";
+
+
+        success.textContent =
+            "❌ Patient registration rejected successfully.";
+
+
+        await loadPendingPatients();
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Reject error:",
+            error
+        );
+
+
+        const errorBox =
+            document.getElementById(
+                "error"
+            );
+
+
+        errorBox.style.display =
+            "block";
+
+
+        errorBox.textContent =
+            "Unable to reject registration: " +
+            error.message;
+
+
+        button.disabled = false;
+
+        button.textContent =
+            "❌ Reject Registration";
+
+    }
+
+}
+
+
+/* ================================
+   ADMIN LOGOUT
+================================ */
+
+document
+    .getElementById(
+        "logoutButton"
+    )
+    .addEventListener(
+        "click",
+        async function() {
+
+            await supabaseClient
+                .auth
+                .signOut();
+
+            window.location.href =
+                "login.html";
+
+        }
+    );
+
+
+</script>
+
+</body>
+
+</html>
